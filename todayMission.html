@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery-1.6.2.min.js" ></script>
+		<script src="js/mui.min.js"></script>
+		
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				plus.nativeUI.showWaiting("页面加载中，请稍候！")
+				mui.ajax(
+//					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
+					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+					{
+					data:{
+						
+					},
+					type:"post",
+					dataType:"json",
+					success:function(data){
+						var list = data.rows;
+						
+						for(var i=0;i<list.length;i++){
+							var rentId = list[i].rentId;
+							var rentName = list[i].rentName;
+							var handle = list[i].zt;
+							var num = list[i].num;
+							var finishTime = list[i].finishTime;
+							var state;
+							if(finishTime==null){
+								state = "未完成";
+								var str = "";
+								    str+='<tr style="height: 50px;">';
+						    		str+='<td width="50px" align="center">'+rentName+'</td>';
+						    		str+='<td width="50px" align="center">'+handle+'</td>';
+						    		str+='<td width="50px" align="center">'+num+'</td>';
+						    		str+='<td width="50px" align="center">'+state+'</td>';
+						    		str+='<td width="80px" align="center">';
+						    		str+='	<button class="mui-btn-blue" id="tofinish">去完成</button>';
+						    		str+='</td>';
+						    		str+='</tr>';
+						    		
+					    		//将str字段转化为jQuery的tr对象
+								var $tr = $(str);
+								//将rentId等绑定到元素中
+								$tr.data("rentId",rentId);
+								$tr.data("rentName",rentName);
+								$tr.data("handle",handle);
+								$tr.data("num",num);
+								
+								//将元素添加到table后
+								$("#todayMission").append($tr);
+							}else{
+								state = "已完成";
+								var str = "";
+								    str+='<tr class="str" style="height: 50px;">';
+						    		str+='<td width="50px" align="center">'+rentName+'</td>';
+						    		str+='<td width="50px" align="center">'+handle+'</td>';
+						    		str+='<td width="50px" align="center">'+num+'</td>';
+						    		str+='<td width="50px" align="center">'+state+'</td>';
+						    		str+='<td width="80px" align="center">'+state+'</td>';
+						    		str+='</tr>';
+								var $tr = $(str);
+								$("#todayMission").append($tr);
+							}
+						}
+						plus.nativeUI.closeWaiting();
+						//弹窗提示
+						plus.nativeUI.toast("加载任务列表成功！");
+					},
+					error:function(){
+						plus.nativeUI.toast("加载任务列表失败！");
+					}
+				});
+				
+				//点击完成按钮操作
+				mui("#todayMission").on('tap','button',function(){
+//					plus.nativeUI.toast("进入完成页面！");
+					var tr = $(this).parent().parent();
+					var rentId = tr.data("rentId");
+					var rentName = tr.data("rentName");
+					var handle = tr.data("handle");
+					var num = tr.data("num");
+					
+					
+					
+					//测试
+					console.log("todayMission中的测试rentId:"+rentId);
+					mui.openWindow({
+						url:"tofinish.html",
+						id:"tofinish",
+						extras:{
+							name:rentId+","+rentName+","+handle+","+num
+						}
+					});
+					
+					
+				});
+			});
+			
+			
+			
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">今日任务列表</h1>
+		</header>
+		<div class="mui-content">
+		    <table id="todayMission" border="1" width="100%">
+		    	<tr  style="height: 50px;">
+		    		<td width="80px" align="center">站点</td>
+		    		<td width="30px" align="center">操作</td>
+		    		<td width="30px" align="center">数量</td>
+		    		<td width="50px" align="center">状态</td>
+		    		<td width="80px" align="center">备注</td>
+		    		
+		    	</tr>
+		    	<!--<tr  style="height: 50px;">
+		    		<td width="50px" align="center">1001</td>
+		    		<td width="50px" align="center">调出</td>
+		    		<td width="50px" align="center">12</td>
+		    		<td width="50px" align="center">未完成</td>
+		    		<td width="80px" align="center">
+		    			<button class="mui-btn-blue" id="tofinish">去完成</button>
+		    		</td>
+		    	</tr>
+		    	<tr  style="height: 50px;">
+		    		<td width="50px" align="center">1002</td>
+		    		<td width="50px" align="center">调入</td>
+		    		<td width="50px" align="center">9</td>
+		    		<td width="50px" align="center">未完成</td>
+		    		<td width="80px" align="center">
+		    			<button class="mui-btn-blue">去完成</button>
+		    		</td>
+		    	</tr>-->
+		    	
+		    </table>
+		</div>
+	</body>
+
+</html>

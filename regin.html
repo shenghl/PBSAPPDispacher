@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<style type="text/css">
+			.mui-content{
+				margin-top: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">注册</h1>
+		</header>
+		<div class="mui-content">
+		    <form class="mui-input-group">
+		    	<div class="mui-input-row">
+		    		<label for="">账号</label>
+		    		<input type="text" class="mui-input mui-input-clear" id="account" placeholder="请输入注册账号"/>
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">密码</label>
+		    		<input type="password" class="mui-input mui-input-clear" id="password" placeholder="请输入密码"/>
+		    	</div><div class="mui-input-row">
+		    		<label for="">确认密码</label>
+		    		<input type="password" class="mui-input mui-input-clear" id="sure_password" placeholder="请再次输入密码"/>
+		    	</div>
+		    </form>
+		    <div class="mui-content-padded">
+		    	<button id="reg" class="mui-btn mui-btn-block mui-btn-primary">提交</button>
+		    </div>
+		</div>
+		<script type="text/javascript">
+			mui.plusReady(function(){
+				//账号
+				var account = document.getElementById("account");
+				//密码
+				var password = document.getElementById("password");
+				//确认密码
+				var sure_password = document.getElementById("sure_password");
+				//提交按钮
+				var regButton = document.getElementById("reg");
+				
+				
+				//添加注册按钮监听事件
+				regButton.addEventListener('tap',function(){
+					console.log("account=="+account.value)
+					console.log("password=="+password.value)
+					//验证账号输入框是否为空
+					
+					var passwordValue = password.value;
+					var sure_passwordValue = sure_password.value;
+					if(account.value.length == 0){
+						plus.nativeUI.toast("账号不能为空！")
+						return;
+					}
+					
+					//验证密码输入框是否为空
+					if(password.value.length == 0){
+						plus.nativeUI.toast("密码不能为空!");
+						return;
+					}
+					
+					//验证两次密码输入是否相同
+					if(passwordValue != sure_passwordValue){
+						plus.nativeUI.toast("两次密码不一致！");
+						return;
+					}
+					
+					//发送ajax请求
+					mui.ajax("http://192.168.0.112:8088/pbsproject/map/app_userReg.action",{
+						data:{
+							account:account.value,
+							password:password.value
+						},
+						dataType:'json',
+						type:'post',
+						header:{'Content-Type':'application/json'},
+						timeout:1000,
+						success:function(data){
+							//服务器返回成功响应，做回调处理
+							if(data.resultInfo.type == 0){
+								plus.nativeUI.toast("账户已存在！请重新输入");
+								return;
+							}else{
+								plus.nativeUI.toast("注册成功，可以登录啦！");
+								
+								mui.openWindow({
+								url:"login.html",
+								id:"login",
+								show:{
+									duration:300
+								},
+//								waiting:{
+//									autoShow:true,
+//									title:"正在跳转登录页面……",
+//								}
+								
+								
+							});
+							}
+						},
+						error:function(data){
+							plus.nativeUI.toast("注册账号失败！请稍候再试"+data)
+						}
+						
+					});
+				});
+			});
+			
+			
+		</script>
+	</body>
+
+</html>

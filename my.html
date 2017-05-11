@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				//获取登录用户信息
+				var name = localStorage.getItem("account");
+				console.log(name)
+				//显示登录的账户信息
+				$("#myName").html(name);
+			});
+		</script>
+	</head>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的</h1>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+		    	<li class="mui-table-view-cell mui-media" id="head">
+		    		<a href="#">
+		    			<img class="mui-media-object mui-pull-left" id="head_img" src="images/touxiang.jpg" />
+		    			<div class="mui-media-body">
+		    				<span id="myName"></span>
+		    				<p id="clicks" style="height: 30px;">系统调度身份</p>
+		    			</div>
+		    		</a>
+		    	</li>
+		    </ul>
+		    <ul class="mui-table-view" style="margin-top: 15px;font-size: 16px;">
+		    	<li class="mui-table-view-cell">
+		    		<a class="mui-navigate-right" id="btnMyOrder" >
+		    			<span class="mui-icon mui-icon-bars"></span> 调度记录
+		    		</a>
+		    	</li>
+		    </ul>
+		    
+		    <ul class="mui-table-view" style="margin-top: 15px;font-size: 16px;">
+		    	<li class="mui-table-view-cell">
+		    		<a class="mui-navigate-right" id="btnChangePWD">
+		    			<span class="mui-icon mui-icon-locked"></span>    修改密码
+		    		</a>
+		    	</li>
+		    	<li class="mui-table-view-cell mui-hidden">
+		    		<a class="mui-navigate-right" id="btnAsk">
+		    			<img src="images/4.jpg" style="width: 22px;height: 20px;margin-right: 4px;margin-bottom: -5px;" />我的地址
+		    		</a>
+		    	</li>
+		    	<li class="mui-table-view-cell">
+		    		<a class="mui-navigate-right" id="btnMyCar">
+		    			<span class="mui-icon mui-icon-paperplane"></span>   车辆信息
+		    		</a>
+		    	</li>
+		    </ul>
+		    
+		     <ul class="mui-table-view" style="margin-top: 25px;font-size: 16px;">
+		    	<li class="mui-table-view">
+		    		<a class="mui-navbar-inner" id="btnLoginOut" >
+		    			<button class="mui-btn-block mui-btn-danger">退出登录</button>
+		    		</a>
+		    	</li>
+		    </ul>
+		</div>
+	<body>
+		
+	</body>
+
+</html>

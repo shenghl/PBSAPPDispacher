@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/jquery-1.4.4.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				plus.nativeUI.showWaiting("页面加载中，请稍候！")
+				mui.ajax(
+//					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
+					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+					{
+					data:{
+						
+					},
+					type:"post",
+					dataType:"json",
+					success:function(data){
+						var list = data.rows;
+						
+						for(var i=0;i<list.length;i++){
+							var rentName = list[i].rentName;
+							var handle = list[i].zt;
+							var num = list[i].num;
+							var finishTime = list[i].finishTime;
+							var state;
+							if(finishTime != null){
+								state = "已完成";
+								var str = "";
+								    str+='<tr  style="height: 50px;">';
+						    		str+='<td width="50px" align="center">'+rentName+'</td>';
+						    		str+='<td width="50px" align="center">'+handle+'</td>';
+						    		str+='<td width="50px" align="center">'+num+'</td>';
+						    		str+='<td width="50px" align="center">'+state+'</td>';
+						    		str+='<td width="80px" align="center">'+finishTime+'</td>';
+						    		str+='</tr>';
+				    		//将str转化为jQuery对象
+							var $tr = $(str);
+							//将对象添加到table后
+							$("#finishMission").append($tr);
+							}
+						}
+						//关闭等待页面
+						plus.nativeUI.closeWaiting();
+						//弹窗提醒
+						plus.nativeUI.toast("加载任务列表成功！");
+						
+					},
+					error:function(){
+						//关闭等待页面
+						plus.nativeUI.closeWaiting();
+						//弹窗提醒
+						plus.nativeUI.toast("加载任务列表失败！");
+					}
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">已完成任务列表</h1>
+		</header>
+		<div class="mui-content">
+		    <table id="finishMission" border="1" width="100%">
+		    	<tr  style="height: 50px;">
+		    		<td width="50px" align="center">站点</td>
+		    		<td width="50px" align="center">操作</td>
+		    		<td width="50px" align="center">数量</td>
+		    		<td width="50px" align="center">状态</td>
+		    		<td width="80px" align="center">完成时间</td>
+		    	</tr>
+		    </table>
+		</div>
+	</body>
+
+</html>
