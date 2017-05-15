@@ -72,7 +72,7 @@
 					}
 					//关闭等待页面
 					plus.nativeUI.closeWaiting();
-						//弹窗提示
+					//弹窗提示
 					plus.nativeUI.toast("列表加载成功");
 					
 					
@@ -98,7 +98,7 @@
 				//提交按钮处理
 				var btnSubmit = document.getElementById("BtnSubmit");
 				btnSubmit.addEventListener('tap',function(){
-					plus.nativeUI.toast("点了提交按钮")
+//					plus.nativeUI.toast("点了提交按钮")
 					
 					//获取addBike表格中的所有tr元素					
 					var text = $("#addBike").find("tr");
@@ -126,7 +126,8 @@
 					//发送ajax请求					
 					mui.ajax(
 //						"http://192.168.0.112:8088/pbsproject/map/app_finishMission.action",//公司
-						"http://192.168.191.1:8088/pbsproject/map/app_finishMission.action",//宿舍
+						'http://192.168.191.1:8088/pbsproject/map/app_finishMission.action',//公司
+//						"http://192.168.191.1:8088/pbsproject/map/app_finishMission.action",//宿舍
 						{
 						data:{
 							rentId:rentId,
@@ -138,11 +139,19 @@
 						success:function(data){
 							//关闭等待页面
 							plus.nativeUI.closeWaiting();
-//							if(data.resultInfo.type==1){
+							if(data.resultInfo.type==1){
 								plus.nativeUI.toast("任务提交成功！");
+								
 								//调转到未完成任务页面
-								window.location.href = "unfinishMission.html";
-//							}
+								mui.openWindow({
+									url:"unfinishMission_main.html",
+									id:"unfinishMission_main"
+								})
+								
+								
+//								window.location.href = "unfinishMission_main.html";
+								
+							}
 						},
 						error:function(){
 							plus.nativeUI.toast("提交失败，稍后再试吧！");
@@ -165,10 +174,10 @@
 		</header>
 		<div class="mui-content">
 		    <table id="mission" border="1" width="100%">
-		    	<tr  style="height: 50px;">
-		    		<td width="80px" align="center">站点</td>
-		    		<td width="30px" align="center">操作</td>
-		    		<td width="30px" align="center">数量</td>
+		    	<tr  style="height: 50px;background-color:#D8D8D8;">
+		    		<td width="80px" align="center"><h4>站点</h4></td>
+		    		<td width="30px" align="center"><h4>操作</h4></td>
+		    		<td width="30px" align="center"><h4>数量</h4></td>
 		    		
 		    		<!--<td width="80px" align="center">
 		    		<input type="text" style="width:100%; height:100%;margin:0px;padding:0px;border: hidden;" placeholder="手动输入编号"/>
@@ -181,10 +190,10 @@
 		
 		<div class="addBike" style="margin-top: 20px;">
 			<table id="addBike" border="1" width="100%">
-		    	<tr id="addBike_tr" style="height: 50px;">
-		    		<td width="30px" align="center">序号</td>
-		    		<td width="80px" align="center">车辆编号</td>
-		    		<td width="20px" align="center">扫码添加</td>
+		    	<tr id="addBike_tr" style="height: 50px;background-color:#D8D8D8;">
+		    		<td width="30px" align="center"><h4>序号</h4></td>
+		    		<td width="80px" align="center"><h4>车辆编号</h4></td>
+		    		<td width="20px" align="center"><h4>扫码添加</h4></td>
 		    	</tr>
 		    </table>
 		</div>

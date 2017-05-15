@@ -9,12 +9,36 @@
 		<script src="js/jquery-1.4.4.min.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
-			mui.plusReady(function(){
-				plus.nativeUI.showWaiting("页面加载中，请稍候！")
+			mui.init({
+				pullRefresh:{
+					container:"#pullrefresh",
+					down:{
+						callback:pulldownRefresh
+					}
+				}
+			});
+			
+			//下拉刷新代码实现
+			function pulldownRefresh(){
+				setTimeout(function(){
+					//清除数据
+					var list = $("tr");
+					for(var i=1;i<list.length;i++){
+						list[i].remove();
+					}
+					
+					//ajax请求数据
+					getDate();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				},1500);
+			}
+			
+			//ajax请求
+			function getDate(){
 				mui.ajax(
 //					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
-					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
+//					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
 					{
 					data:{
 						
@@ -59,25 +83,31 @@
 						plus.nativeUI.toast("加载任务列表失败！");
 					}
 				});
+			}
+			
+			mui.plusReady(function(){
+				plus.nativeUI.showWaiting("页面加载中，请稍候！")
+				//ajax请求数据
+				getDate();
 			});
 		</script>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav" >
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">已完成任务列表</h1>
-		</header>
-		<div class="mui-content">
-		    <table id="finishMission" border="1" width="100%">
-		    	<tr  style="height: 50px;">
-		    		<td width="50px" align="center">站点</td>
-		    		<td width="50px" align="center">操作</td>
-		    		<td width="50px" align="center">数量</td>
-		    		<td width="50px" align="center">状态</td>
-		    		<td width="80px" align="center">完成时间</td>
-		    	</tr>
-		    </table>
+		<div id="pullrefresh" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="mui-content">
+				    <table id="finishMission" border="1" width="100%">
+				    	<tr  style="height: 50px;">
+				    		<td width="50px" align="center"><h4>站点</h4></td>
+				    		<td width="50px" align="center"><h4>操作</h4></td>
+				    		<td width="50px" align="center"><h4>数量</h4></td>
+				    		<td width="50px" align="center"><h4>状态</h4></td>
+				    		<td width="80px" align="center"><h4>完成时间</h4></td>
+				    	</tr>
+				    </table>
+				</div>
+			</div>
 		</div>
 	</body>
 

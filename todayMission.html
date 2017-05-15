@@ -8,14 +8,39 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery-1.6.2.min.js" ></script>
 		<script src="js/mui.min.js"></script>
-		
 		<script type="text/javascript">
-			mui.init()
-			mui.plusReady(function(){
-				plus.nativeUI.showWaiting("页面加载中，请稍候！")
-				mui.ajax(
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					//清除原有数据,如果不清除则会在原有表格数据基础上添加数据，影响使用
+					var list = $("tr");
+					console.log("====清空===="+list.length)
+					for(var i=1;i<list.length;i++){
+						list[i].remove();
+					}
+					
+					//ajax请求，刷新数据
+					getDate();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			
+			//ajax请求	
+			function getDate(){
+			mui.ajax(
 //					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
-					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
+//					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
 					{
 					data:{
 						
@@ -69,6 +94,7 @@
 								$("#todayMission").append($tr);
 							}
 						}
+						//关闭等待框
 						plus.nativeUI.closeWaiting();
 						//弹窗提示
 						plus.nativeUI.toast("加载任务列表成功！");
@@ -77,6 +103,13 @@
 						plus.nativeUI.toast("加载任务列表失败！");
 					}
 				});
+		}
+			
+			
+			mui.plusReady(function(){
+				plus.nativeUI.showWaiting("页面加载中，请稍候！")
+				//ajax请求 数据
+				getDate();
 				
 				//点击完成按钮操作
 				mui("#todayMission").on('tap','button',function(){
@@ -87,8 +120,6 @@
 					var handle = tr.data("handle");
 					var num = tr.data("num");
 					
-					
-					
 					//测试
 					console.log("todayMission中的测试rentId:"+rentId);
 					mui.openWindow({
@@ -98,8 +129,6 @@
 							name:rentId+","+rentName+","+handle+","+num
 						}
 					});
-					
-					
 				});
 			});
 			
@@ -109,41 +138,28 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav" >
+		<!--<header class="mui-bar mui-bar-nav" >
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">今日任务列表</h1>
-		</header>
-		<div class="mui-content">
-		    <table id="todayMission" border="1" width="100%">
-		    	<tr  style="height: 50px;">
-		    		<td width="80px" align="center">站点</td>
-		    		<td width="30px" align="center">操作</td>
-		    		<td width="30px" align="center">数量</td>
-		    		<td width="50px" align="center">状态</td>
-		    		<td width="80px" align="center">备注</td>
-		    		
-		    	</tr>
-		    	<!--<tr  style="height: 50px;">
-		    		<td width="50px" align="center">1001</td>
-		    		<td width="50px" align="center">调出</td>
-		    		<td width="50px" align="center">12</td>
-		    		<td width="50px" align="center">未完成</td>
-		    		<td width="80px" align="center">
-		    			<button class="mui-btn-blue" id="tofinish">去完成</button>
-		    		</td>
-		    	</tr>
-		    	<tr  style="height: 50px;">
-		    		<td width="50px" align="center">1002</td>
-		    		<td width="50px" align="center">调入</td>
-		    		<td width="50px" align="center">9</td>
-		    		<td width="50px" align="center">未完成</td>
-		    		<td width="80px" align="center">
-		    			<button class="mui-btn-blue">去完成</button>
-		    		</td>
-		    	</tr>-->
-		    	
-		    </table>
-		</div>
+		</header>-->
+		
+		<!--下拉刷新容器-->
+        <div id="pullrefresh" class="mui-scroll-wrapper" >
+        	<div class="mui-scroll">
+        		<!--描述：数据列表-->
+				<div class="mui-content" >
+				    <table id="todayMission" border="1" width="100%">
+				    	<tr  style="height: 50px;background-color:#D8D8D8;">
+				    		<td width="80px" align="center"><h4>站点</h4></td>
+				    		<td width="30px" align="center"><h4>操作</h4></td>
+				    		<td width="30px" align="center"><h4>数量</h4></td>
+				    		<td width="50px" align="center"><h4>状态</h4></td>
+				    		<td width="80px" align="center"><h4>备注</h4></td>
+				    	</tr>
+				    </table>
+				</div>
+        	</div>
+        </div>
 	</body>
 
 </html>

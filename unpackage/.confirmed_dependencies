@@ -31,7 +31,10 @@
 			"forget_password.html",
 			"todayMission.html",
 			"finishMission.html",
-			"unfinishMission.html"
+			"unfinishMission.html",
+			"unfinishMission_main.html",
+			"todayMission_main.html",
+			"finishMission_main.html"
 		]
 	},
 	"main.html": {
@@ -116,7 +119,8 @@
 			"css/mui.min.css",
 			"js/mui.min.js",
 			"js/jquery-1.4.4.min.js",
-			"tofinish.html"
+			"tofinish.html",
+			"js/jquery-1.6.2.min.js"
 		],
 		"refer": [
 			"tofinish.html"
@@ -129,7 +133,9 @@
 			"js/jquery-1.6.2.min.js",
 			"images/touxiang.jpg"
 		],
-		"refer": []
+		"refer": [
+			"login.html"
+		]
 	},
 	"login.html": {
 		"resources": [
@@ -158,10 +164,43 @@
 			"js/jquery-1.4.4.min.js",
 			"js/jquery-1.6.2.min.js",
 			"js/jquery-1.11.1.js",
-			"unfinishMission.html"
+			"unfinishMission.html",
+			"unfinishMission_main.html"
 		],
 		"refer": [
-			"unfinishMission.html"
+			"unfinishMission.html",
+			"unfinishMission_main.html"
+		]
+	},
+	"todayMission_main.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"todayMission.html"
+		],
+		"refer": [
+			"todayMission.html"
+		]
+	},
+	"unfinishMission_main.html": {
+		"resources": [
+			"unfinishMission.html",
+			"css/mui.min.css",
+			"tofinish.html"
+		],
+		"refer": [
+			"unfinishMission.html",
+			"tofinish.html"
+		]
+	},
+	"finishMission_main.html": {
+		"resources": [
+			"finishMission.html",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"finishMission.html"
 		]
 	}
 }
