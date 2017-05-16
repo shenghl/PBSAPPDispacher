@@ -22,8 +22,8 @@
 			function pulldownRefresh(){
 				setTimeout(function(){
 					//清除数据
-					var list = $("tr");
-					for(var i=1;i<list.length;i++){
+					var list = $("li");
+					for(var i=0;i<list.length;i++){
 						list[i].remove();
 					}
 					
@@ -37,8 +37,9 @@
 			function getDate(){
 				mui.ajax(
 //					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
-					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
-//					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+//					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
+//					'http://192.168.2.114:8088/pbsproject/map/app_dispacher.action',//工大
+					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
 					{
 					data:{
 						
@@ -56,20 +57,38 @@
 							var state;
 							if(finishTime != null){
 								state = "已完成";
-								var str = "";
-								    str+='<tr  style="height: 50px;">';
-						    		str+='<td width="50px" align="center">'+rentName+'</td>';
-						    		str+='<td width="50px" align="center">'+handle+'</td>';
-						    		str+='<td width="50px" align="center">'+num+'</td>';
-						    		str+='<td width="50px" align="center">'+state+'</td>';
-						    		str+='<td width="80px" align="center">'+finishTime+'</td>';
-						    		str+='</tr>';
-				    		//将str转化为jQuery对象
-							var $tr = $(str);
-							//将对象添加到table后
-							$("#finishMission").append($tr);
+								var sli = '';	
+						    	 	sli+='	<li class="mui-table-view-cell mui-media">';
+								    sli+='    <a href="javascript:;">';
+								    sli+='        <div class="mui-media-body" style="color:green">';
+								    sli+= rentName;
+								    sli+='            <p class="mui-ellipsis">'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;"+state+"&nbsp;&nbsp;&nbsp;&nbsp;"+finishTime+'</p>';
+								    sli+='        </div>';
+								    sli+='    </a>';
+								    sli+='</li>';
+
+								var $li = $(sli);
+								$("#finishMission").append($li);
 							}
 						}
+						
+						//出现没有符合要求的数据可以呈现时的页面处理
+						var list = $("li");
+						if(list.length == 0){
+							//清空提示信息
+							$("#message").remove();
+							
+							//添加提示信息
+							var sdiv = "";
+							    sdiv+='<div id="message">';
+								sdiv+='		<p style="font-size: 20px;margin-top: 70px;" align="center">^_^……当前任务啦~\(≧▽≦)/~啦啦啦……^_^</p>';
+								sdiv+='</div>';
+								
+								var $div = $(sdiv);
+								$(".mui-table-view").append($div);
+						}
+						
+						
 						//关闭等待页面
 						plus.nativeUI.closeWaiting();
 						//弹窗提醒
@@ -96,7 +115,7 @@
 	<body>
 		<div id="pullrefresh" class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-				<div class="mui-content">
+				<!--<div class="mui-content">
 				    <table id="finishMission" border="1" width="100%">
 				    	<tr  style="height: 50px;">
 				    		<td width="50px" align="center"><h4>站点</h4></td>
@@ -106,7 +125,20 @@
 				    		<td width="80px" align="center"><h4>完成时间</h4></td>
 				    	</tr>
 				    </table>
-				</div>
+				</div>-->
+				
+				 <ul class="mui-table-view" id="finishMission">
+					    <!--<li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <div class="mui-media-body" >
+					                幸福
+					                <p class="mui-ellipsis" >能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+					            </div>
+					        </a>
+					    </li>-->
+					</ul>
+				
+				
 			</div>
 		</div>
 	</body>

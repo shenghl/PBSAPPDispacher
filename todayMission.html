@@ -23,7 +23,7 @@
 			function pulldownRefresh() {
 				setTimeout(function() {
 					//清除原有数据,如果不清除则会在原有表格数据基础上添加数据，影响使用
-					var list = $("tr");
+					var list = $("li");
 					console.log("====清空===="+list.length)
 					for(var i=1;i<list.length;i++){
 						list[i].remove();
@@ -39,8 +39,9 @@
 			function getDate(){
 			mui.ajax(
 //					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
-					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
-//					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+//					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
+//					'http://192.168.2.114:8088/pbsproject/map/app_dispacher.action',//工大
+					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
 					{
 					data:{
 						
@@ -59,41 +60,65 @@
 							var state;
 							if(finishTime==null){
 								state = "未完成";
-								var str = "";
-								    str+='<tr style="height: 50px;">';
-						    		str+='<td width="50px" align="center">'+rentName+'</td>';
-						    		str+='<td width="50px" align="center">'+handle+'</td>';
-						    		str+='<td width="50px" align="center">'+num+'</td>';
-						    		str+='<td width="50px" align="center">'+state+'</td>';
-						    		str+='<td width="80px" align="center">';
-						    		str+='	<button class="mui-btn-blue" id="tofinish">去完成</button>';
-						    		str+='</td>';
-						    		str+='</tr>';
-						    		
+						    	var sli = '';	
+						    	 	sli+='	<li class="mui-table-view-cell mui-media">';
+								    sli+='    <a href="javascript:;">';
+								    sli+='        <div class="mui-media-body" style="color: red">';
+								    sli+=     rentName    ;
+								    sli+='            <p class="mui-ellipsis" >'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;"+state+'</p>';
+								    sli+='        </div>';
+								    sli+='    </a>';
+								    sli+='</li>';
+						    	
 					    		//将str字段转化为jQuery的tr对象
-								var $tr = $(str);
+								var $li = $(sli);
 								//将rentId等绑定到元素中
-								$tr.data("rentId",rentId);
-								$tr.data("rentName",rentName);
-								$tr.data("handle",handle);
-								$tr.data("num",num);
+								$li.data("rentId",rentId);
+								$li.data("rentName",rentName);
+								$li.data("handle",handle);
+								$li.data("num",num);
 								
 								//将元素添加到table后
-								$("#todayMission").append($tr);
+								$("#todayMission").append($li);
 							}else{
 								state = "已完成";
-								var str = "";
-								    str+='<tr class="str" style="height: 50px;">';
-						    		str+='<td width="50px" align="center">'+rentName+'</td>';
-						    		str+='<td width="50px" align="center">'+handle+'</td>';
-						    		str+='<td width="50px" align="center">'+num+'</td>';
-						    		str+='<td width="50px" align="center">'+state+'</td>';
-						    		str+='<td width="80px" align="center">'+state+'</td>';
-						    		str+='</tr>';
-								var $tr = $(str);
-								$("#todayMission").append($tr);
+								var sli = '';	
+						    	 	sli+='	<li class="mui-table-view-cell mui-media">';
+								    sli+='    <a href="javascript:;">';
+								    sli+='        <div class="mui-media-body" style="color:green">';
+								    sli+= rentName;
+								    sli+='            <p class="mui-ellipsis">'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;"+state+'</p>';
+								    sli+='        </div>';
+								    sli+='    </a>';
+								    sli+='</li>';
+
+								var $li = $(sli);
+								$("#todayMission").append($li);
 							}
+							
+							
+						
 						}
+						
+						//出现没有符合要求的数据可以呈现时的页面处理
+						var list = $("li");
+						if(list.length == 0){
+							//清空提示信息
+							$("#message").remove();
+							
+							//添加提示信息
+							var sdiv = "";
+							    sdiv+='<div id="message">';
+								sdiv+='		<p style="font-size: 20px;margin-top: 70px;" align="center">^_^……当前没有任务啦~\(≧▽≦)/~啦啦啦……^_^</p>';
+								sdiv+='</div>';
+								
+								var $div = $(sdiv);
+								$(".mui-table-view").append($div);
+						}
+						
+						
+						
+						
 						//关闭等待框
 						plus.nativeUI.closeWaiting();
 						//弹窗提示
@@ -112,13 +137,24 @@
 				getDate();
 				
 				//点击完成按钮操作
-				mui("#todayMission").on('tap','button',function(){
-//					plus.nativeUI.toast("进入完成页面！");
-					var tr = $(this).parent().parent();
-					var rentId = tr.data("rentId");
-					var rentName = tr.data("rentName");
-					var handle = tr.data("handle");
-					var num = tr.data("num");
+//				mui("#todayMission").on('tap','button',function(){
+//					var tr = $(this).parent().parent();
+//					var rentId = tr.data("rentId");
+//					var rentName = tr.data("rentName");
+//					var handle = tr.data("handle");
+//					var num = tr.data("num");
+					
+				mui("#todayMission").on('tap','li',function(){
+					var li = $(this).val();
+					console.log("+++单击li+++:"+li)
+					var rentId = li.data("rentId");
+					var rentName = li.data("rentName");
+					var handle = li.data("handle");
+					var num = li.data("num");	
+					
+					
+					
+					
 					
 					//测试
 					console.log("todayMission中的测试rentId:"+rentId);
@@ -138,28 +174,29 @@
 	</head>
 
 	<body>
-		<!--<header class="mui-bar mui-bar-nav" >
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">今日任务列表</h1>
-		</header>-->
-		
 		<!--下拉刷新容器-->
         <div id="pullrefresh" class="mui-scroll-wrapper" >
         	<div class="mui-scroll">
         		<!--描述：数据列表-->
-				<div class="mui-content" >
-				    <table id="todayMission" border="1" width="100%">
-				    	<tr  style="height: 50px;background-color:#D8D8D8;">
-				    		<td width="80px" align="center"><h4>站点</h4></td>
-				    		<td width="30px" align="center"><h4>操作</h4></td>
-				    		<td width="30px" align="center"><h4>数量</h4></td>
-				    		<td width="50px" align="center"><h4>状态</h4></td>
-				    		<td width="80px" align="center"><h4>备注</h4></td>
-				    	</tr>
-				    </table>
-				</div>
+				<!--<div class="mui-content" >-->
+				    <ul class="mui-table-view" id="todayMission">
+					    <!--<li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <div class="mui-media-body" >
+					                幸福
+					                <p class="mui-ellipsis" >能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+					            </div>
+					        </a>
+					    </li>-->
+				    
+					</ul>
+				    
+				    
+				<!--</div>-->
+				
+				
+				
         	</div>
         </div>
 	</body>
-
 </html>

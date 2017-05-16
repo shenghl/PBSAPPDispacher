@@ -23,7 +23,11 @@
 			"images/2.jpg",
 			"images/1.jpg",
 			"images/3.jpg",
-			"images/4.jpg"
+			"images/4.jpg",
+			"images/cbd.jpg",
+			"images/yuantiao.jpg",
+			"images/muwu.jpg",
+			"images/shuijiao.jpg"
 		],
 		"refer": [
 			"main.html",
@@ -58,7 +62,8 @@
 			"regin.html",
 			"setting.html",
 			"my.html",
-			"login.html"
+			"login.html",
+			"location.html"
 		]
 	},
 	"regin.html": {
@@ -201,6 +206,15 @@
 		],
 		"refer": [
 			"finishMission.html"
+		]
+	},
+	"location.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/common.js",
+			"css/common.css",
+			"js/immersed.js"
 		]
 	}
 }
