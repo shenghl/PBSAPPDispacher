@@ -108,7 +108,9 @@
 			"js/jquery-1.6.2.min.js"
 		],
 		"refer": [
-			"tofinish.html"
+			"tofinish.html",
+			"single_finish.html",
+			"single_unfinish.html"
 		]
 	},
 	"finishMission.html": {
@@ -117,7 +119,9 @@
 			"css/mui.min.css",
 			"js/jquery-1.4.4.min.js"
 		],
-		"refer": []
+		"refer": [
+			"single_finish.html"
+		]
 	},
 	"unfinishMission.html": {
 		"resources": [
@@ -154,7 +158,8 @@
 			"js/cookie_util.js",
 			"js/jquery.cookie.js",
 			"js/jquery-1.4.4.min.js",
-			"js/jquery-1.6.2.min.js"
+			"js/jquery-1.6.2.min.js",
+			"js/url.js"
 		],
 		"refer": [
 			"main.html",
@@ -215,6 +220,21 @@
 			"js/common.js",
 			"css/common.css",
 			"js/immersed.js"
+		]
+	},
+	"single_finish.html": {
+		"resources": [
+			"css/mui.min.css"
+		]
+	},
+	"single_unfinish.html": {
+		"resources": [
+			"css/mui.min.css",
+			"single_unfinish.html"
+		],
+		"refer": [
+			"single_unfinish.html",
+			"tofinish.html"
 		]
 	}
 }

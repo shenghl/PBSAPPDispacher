@@ -8,6 +8,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script src="js/mui.min.js"></script>
 		<script src="js/jquery-1.11.1.js"></script>
+		<script src="js/url.js"></script>
 		<style>
 			input{
 				text-align: center;
@@ -125,10 +126,7 @@
 					console.log("提交按钮里面的rentId："+rentId+"："+user)
 					//发送ajax请求					
 					mui.ajax(
-//						"http://192.168.0.112:8088/pbsproject/map/app_finishMission.action",//公司
-//						'http://192.168.191.1:8088/pbsproject/map/app_finishMission.action',//公司
-						'http://192.168.2.114:8088/pbsproject/map/app_finishMission.action',//工大
-//						"http://192.168.191.1:8088/pbsproject/map/app_finishMission.action",//宿舍
+						url+'app_finishMission.action',
 						{
 						data:{
 							rentId:rentId,

@@ -8,6 +8,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script src="js/jquery-1.6.2.min.js"></script>
 		<script src="js/mui.min.js"></script>
+		<script src="js/url.js"></script>
 		<script type="text/javascript">
 			mui.init({
 				pullRefresh:{
@@ -38,10 +39,7 @@
 			//ajax请求
 			function getDate(){
 				mui.ajax(
-//					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
-//					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
-//					'http://192.168.2.114:8088/pbsproject/map/app_dispacher.action',//工大
-					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
+					url+'app_dispacher.action',
 					{
 					data:{
 						
@@ -121,8 +119,8 @@
 				getDate();
 				
 				//点击完成按钮
-				mui("#unfinishMission").on('tap','button',function(){
-					var tr = $(this).parent().parent();
+				mui("#unfinishMission").on('tap','li',function(){
+					var tr = $(this);
 					var rentId = tr.data("rentId");
 					var rentName = tr.data("rentName");
 					var handle = tr.data("handle");

@@ -8,6 +8,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery-1.6.2.min.js" ></script>
 		<script src="js/mui.min.js"></script>
+		<script src="js/url.js"></script>
 		<script type="text/javascript">
 			mui.init({
 				pullRefresh: {
@@ -38,11 +39,8 @@
 			//ajax请求	
 			function getDate(){
 			mui.ajax(
-//					"http://192.168.0.112:8088/pbsproject/map/app_dispacher.action",//公司
-//					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',//公司
-//					'http://192.168.2.114:8088/pbsproject/map/app_dispacher.action',//工大
-					"http://192.168.191.1:8088/pbsproject/map/app_dispacher.action",//宿舍
-					{
+				url+'app_dispacher.action',
+				{
 					data:{
 						
 					},
@@ -62,13 +60,13 @@
 								state = "未完成";
 						    	var sli = '';	
 						    	 	sli+='	<li class="mui-table-view-cell mui-media">';
-								    sli+='    <a href="javascript:;">';
+//								    sli+='    <a href="javascript:;">';
 								    sli+='        <div class="mui-media-body" style="color: red">';
 								    sli+=     rentName    ;
 								    sli+='            <p class="mui-ellipsis" >'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;"+state+'</p>';
 								    sli+='        </div>';
-								    sli+='    </a>';
-								    sli+='</li>';
+//								    sli+='    </a>';
+								    sli+='	</li>';
 						    	
 					    		//将str字段转化为jQuery的tr对象
 								var $li = $(sli);
@@ -77,27 +75,32 @@
 								$li.data("rentName",rentName);
 								$li.data("handle",handle);
 								$li.data("num",num);
-								
+								$li.data("state",state);
 								//将元素添加到table后
 								$("#todayMission").append($li);
 							}else{
 								state = "已完成";
 								var sli = '';	
 						    	 	sli+='	<li class="mui-table-view-cell mui-media">';
-								    sli+='    <a href="javascript:;">';
+//								    sli+='    <a href="javascript:;">';
 								    sli+='        <div class="mui-media-body" style="color:green">';
-								    sli+= rentName;
+								    sli+=' <span id="rentName">'+rentName+'</span>';
 								    sli+='            <p class="mui-ellipsis">'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;"+state+'</p>';
 								    sli+='        </div>';
-								    sli+='    </a>';
+//								    sli+='  </a>';
 								    sli+='</li>';
 
 								var $li = $(sli);
+								//将rentId等绑定到元素中
+								$li.data("rentId",rentId);
+								$li.data("rentName",rentName);
+								$li.data("handle",handle);
+								$li.data("num",num);
+								$li.data("state",state);
+								$li.data("finishTime",finishTime);
+								//添加到ul后
 								$("#todayMission").append($li);
 							}
-							
-							
-						
 						}
 						
 						//出现没有符合要求的数据可以呈现时的页面处理
@@ -116,15 +119,15 @@
 								$(".mui-table-view").append($div);
 						}
 						
-						
-						
-						
 						//关闭等待框
 						plus.nativeUI.closeWaiting();
 						//弹窗提示
 						plus.nativeUI.toast("加载任务列表成功！");
 					},
 					error:function(){
+						//关闭等待框
+						plus.nativeUI.closeWaiting();
+						//弹窗提示
 						plus.nativeUI.toast("加载任务列表失败！");
 					}
 				});
@@ -136,35 +139,35 @@
 				//ajax请求 数据
 				getDate();
 				
-				//点击完成按钮操作
-//				mui("#todayMission").on('tap','button',function(){
-//					var tr = $(this).parent().parent();
-//					var rentId = tr.data("rentId");
-//					var rentName = tr.data("rentName");
-//					var handle = tr.data("handle");
-//					var num = tr.data("num");
-					
+				//点击列表选项操作
 				mui("#todayMission").on('tap','li',function(){
-					var li = $(this).val();
-					console.log("+++单击li+++:"+li)
+					var li = $(this);
 					var rentId = li.data("rentId");
 					var rentName = li.data("rentName");
 					var handle = li.data("handle");
 					var num = li.data("num");	
-					
-					
-					
-					
+					var state = li.data("state");
+					var finishTime = li.data("finishTime");
 					
 					//测试
 					console.log("todayMission中的测试rentId:"+rentId);
-					mui.openWindow({
-						url:"tofinish.html",
-						id:"tofinish",
-						extras:{
-							name:rentId+","+rentName+","+handle+","+num
-						}
-					});
+					if(state == "未完成"){
+						mui.openWindow({
+							url:"single_unfinish.html",
+							id:"single_unfinish",
+							extras:{
+								name:rentId+","+rentName+","+handle+","+num+","+state
+							}
+						});
+					}else{
+						mui.openWindow({
+							url:"single_finish.html",
+							id:"single_finish",
+							extras:{
+								name:rentId+","+rentName+","+handle+","+num+","+state+","+finishTime
+							}
+						});
+					}
 				});
 			});
 			

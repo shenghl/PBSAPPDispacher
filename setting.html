@@ -165,16 +165,16 @@
 					<div class="mui-scroll">
 						<ul class="mui-table-view mui-table-view-chevron">
 							<li class="mui-table-view-cell">
-								<a id="rate" class="mui-navigate-right">评分鼓励</a>
+								<a id="rate" class="mui-navigate-right" style="height: 50px;">评分鼓励</a>
 							</li>
 							<li class="mui-table-view-cell">
-								<a id="share" class="mui-navigate-right">分享推荐</a>
+								<a id="share" class="mui-navigate-right" style="height: 50px;">分享推荐</a>
 							</li>
 							<li class="mui-table-view-cell">
-								<a id="tel" class="mui-navigate-right">客服电话</a>
+								<a id="tel" class="mui-navigate-right" style="height: 50px;">客服电话</a>
 							</li>
 							<li class="mui-table-view-cell">
-								<a id="feedback-btn" href="#feedback" class="mui-navigate-right">问题反馈</a>
+								<a id="feedback-btn" href="#feedback" class="mui-navigate-right" style="height: 50px;">问题反馈</a>
 							</li>
 						</ul>
 						<!--<ul class="mui-table-view mui-table-view-chevron">
@@ -381,7 +381,7 @@
 			plus.device.dial("114");
 		});
 		 //退出操作******************
-		document.getElementById('exit').addEventListener('tap', function() {
+		document.getElementById('exit').addEventListener('tap',function() {
 			if (mui.os.ios) {
 				app.setState({});
 				mui.openWindow({

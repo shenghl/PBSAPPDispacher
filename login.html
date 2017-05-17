@@ -117,6 +117,7 @@
 		
 		<script src="js/jquery-1.6.2.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
+		<script src="js/url.js"></script>
 		<script type="text/javascript">
 			mui.plusReady(function(){
 				//账号
@@ -145,10 +146,7 @@
 					var wait = plus.nativeUI.showWaiting("登录验证中……");
 					//发送ajax请求
 					mui.ajax(
-//						'http://192.168.0.112:8088/pbsproject/map/app_userLogin.action',//公司
-//						'http://192.168.191.1:8088/pbsproject/map/app_userLogin.action',//公司
-//						'http://192.168.2.114:8088/pbsproject/map/app_userLogin.action',//工大
-						'http://192.168.191.1:8088/pbsproject/map/app_userLogin.action',//宿舍
+						url+'app_userLogin.action',
 						{
 						data:{
 							account:account.value,
