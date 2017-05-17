@@ -132,7 +132,8 @@
 			"js/jquery-1.6.2.min.js"
 		],
 		"refer": [
-			"tofinish.html"
+			"tofinish.html",
+			"single_unfinish.html"
 		]
 	},
 	"my.html": {

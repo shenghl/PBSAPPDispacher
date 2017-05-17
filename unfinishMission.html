@@ -76,7 +76,7 @@
 								$li.data("rentName",rentName);
 								$li.data("handle",handle);
 								$li.data("num",num);
-								
+								$li.data("state",state);
 								//将元素添加到table后
 								$("#unfinishMission").append($li);
 							}
@@ -120,19 +120,20 @@
 				
 				//点击完成按钮
 				mui("#unfinishMission").on('tap','li',function(){
-					var tr = $(this);
-					var rentId = tr.data("rentId");
-					var rentName = tr.data("rentName");
-					var handle = tr.data("handle");
-					var num = tr.data("num");
+					var li = $(this);
+					var rentId = li.data("rentId");
+					var rentName = li.data("rentName");
+					var handle = li.data("handle");
+					var num = li.data("num");
+					var state = li.data("state");
 					
 					//测试
 					console.log("todayMission中的测试rentId:"+rentId);
 					mui.openWindow({
-						url:"tofinish.html",
-						id:"tofinish",
+						url:"single_unfinish.html",
+						id:"single_unfinish",
 						extras:{
-							name:rentId+","+rentName+","+handle+","+num
+							name:rentId+","+rentName+","+handle+","+num+","+state
 						}
 					});
 				});
