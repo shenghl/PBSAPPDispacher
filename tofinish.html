@@ -67,9 +67,9 @@
 				//添加任务列表
 				var str = "";
 				    str+='<tr style="height: 50px;">';
-		    		str+='<td width="50px" align="center">'+rentName+'</td>';
-		    		str+='<td width="20px" align="center">'+handle+'</td>';
-		    		str+='<td width="20px" align="center">'+num+'</td>';
+		    		str+='<td width="50px" align="center" style="color: green;">'+rentName+'</td>';
+		    		str+='<td width="20px" align="center" style="color: green;">'+handle+'</td>';
+		    		str+='<td width="20px" align="center" style="color: green;">'+num+'</td>';
 		    		str+='</tr>';
 		    		//将str字段转化为jQuery的tr对象
 					var $tr = $(str);
@@ -90,11 +90,8 @@
 						    str+='<tr style="height: 50px;">';
 				    		str+='	<td width="30px" align="center">'+i+'</td>';
 				    		str+='	<td width="80px" align="center">';
-				    		str+='		<input id="nohistory" type="text" style="width:100%;height:100%;margin: 0;padding: 0;border: hidden;" placeholder="手动输入编号"/>';
+				    		str+='		<input id="nohistory" type="text" style="width:100%;height:100%;margin: 0;padding: 0;border: hidden;" placeholder="手动或扫码添加车辆编号"/>';
 				    		str+='	</td>'; 
-//				    		str+='	<td width="20px" align="center">';
-//				    		str+='		<button class="mui-btn-blue" id="btnScan" >扫码添加</button>';
-//				    		str+='	</td>';
 				    		str+='</tr>';
 			    		//将str字段转化为jQuery的tr对象
 						var $tr = $(str);
@@ -105,20 +102,6 @@
 					plus.nativeUI.closeWaiting();
 					//弹窗提示
 					plus.nativeUI.toast("列表加载成功");
-					
-					
-				//扫描添加车辆信息
-//				mui("#addBike").on('tap','button',function(){
-//					plus.nativeUI.toast("扫描");
-//					
-//					//获取文本框
-//					var text = $(this).parent().prev().find("input").val();
-//					console.log("扫描时获取文本框:"+text)
-//				});
-				
-				
-					
-				
 					
 					
 				//提交按钮处理
@@ -171,10 +154,6 @@
 									url:"unfinishMission_main.html",
 									id:"unfinishMission_main"
 								})
-								
-								
-//								window.location.href = "unfinishMission_main.html";
-								
 							}
 						},
 						error:function(){
@@ -199,15 +178,9 @@
 		<div class="mui-content">
 		    <table id="mission" border="1" width="100%">
 		    	<tr  style="height: 50px;background-color:#D8D8D8;">
-		    		<td width="80px" align="center"><h4>站点</h4></td>
-		    		<td width="30px" align="center"><h4>操作</h4></td>
-		    		<td width="30px" align="center"><h4>数量</h4></td>
-		    		
-		    		<!--<td width="80px" align="center">
-		    		<input type="text" style="width:100%; height:100%;margin:0px;padding:0px;border: hidden;" placeholder="手动输入编号"/>
-		    		</td>-->
-		    		<!--<td width="30px" align="center">操作方式</td>-->
-		    		<!--<td width="30px" align="center">操作方式</td>-->
+		    		<td width="80px" align="center"><h4 style="color: darkslategray">站点</h4></td>
+		    		<td width="30px" align="center"><h4 style="color: darkslategray;">操作</h4></td>
+		    		<td width="30px" align="center"><h4 style="color: darkslategray;">数量</h4></td>
 		    	</tr>
 		    </table>
 		</div>
@@ -215,8 +188,8 @@
 		<div class="addBike" style="margin-top: 20px;">
 			<table id="addBike" border="1" width="100%">
 		    	<tr id="addBike_tr" style="height: 50px;background-color:#D8D8D8;">
-		    		<td width="30px" align="center"><h4>序号</h4></td>
-		    		<td width="80px" align="center"><h4>车辆编号</h4></td>
+		    		<td width="30px" align="center"><h4 style="color: darkslategray;">序号</h4></td>
+		    		<td width="80px" align="center"><h4 style="color: darkslategray;">车辆编号</h4></td>
 		    		<!--<td width="20px" align="center"><h4>扫码添加</h4></td>-->
 		    	</tr>
 		    </table>
