@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<script src="js/mui.min.js"></script>
-		<script src="js/jquery-1.11.1.js"></script>
+		<script src="js/jquery-1.6.2.min.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/url.js"></script>
 		<style>
 			input{
@@ -16,7 +16,37 @@
 		</style>
 		<script type="text/javascript">
 			mui.init()
-//			console.log("tofinish中："+localStorage.getItem("account"))
+			
+	/*********************** 扫码添加车辆信息*********************/
+			var img = null;
+			var blist = [];
+			//t表示条形码类型，r表示，f表示
+			function scaned(t, r, f){
+				//获取表格的输入框
+				var text = $("#addBike").find("tr");
+				//获得所有tr元素的数目
+				var tr_num = text.length;
+//				mui.alert("编码："+text.length);
+				
+				//for循环遍历
+				for(var i=1;i<tr_num;i++){
+					//获取每个tr元素的文本框内容
+					var text_value = text.eq(i).find("td").eq(1).find("input").val();
+//					console.log("tofinish页面中文本框内容:"+text_value);
+					
+					//判断输入框是否为空,如果为空写入扫描的内容
+					if(text_value == null || text_value == "" ){
+						//如果为空写入扫描的内容
+						text.eq(i).find("td").eq(1).find("input").val(r);
+						return;
+					}else{
+						continue;
+					}
+				}
+			}
+	//****************************************
+			
+			
 			mui.plusReady(function(){
 				//添加等待页面，改善用户体验
 				plus.nativeUI.showWaiting("页面加载中，请稍候！")
@@ -60,11 +90,11 @@
 						    str+='<tr style="height: 50px;">';
 				    		str+='	<td width="30px" align="center">'+i+'</td>';
 				    		str+='	<td width="80px" align="center">';
-				    		str+='		<input type="text" style="width:100%;height:100%;margin: 0;padding: 0;border: hidden;" placeholder="手动输入编号"/>';
+				    		str+='		<input id="nohistory" type="text" style="width:100%;height:100%;margin: 0;padding: 0;border: hidden;" placeholder="手动输入编号"/>';
 				    		str+='	</td>'; 
-				    		str+='	<td width="20px" align="center">';
-				    		str+='		<button class="mui-btn-blue" id="btnScan">扫码添加</button>';
-				    		str+='	</td>';
+//				    		str+='	<td width="20px" align="center">';
+//				    		str+='		<button class="mui-btn-blue" id="btnScan" >扫码添加</button>';
+//				    		str+='	</td>';
 				    		str+='</tr>';
 			    		//将str字段转化为jQuery的tr对象
 						var $tr = $(str);
@@ -78,20 +108,15 @@
 					
 					
 				//扫描添加车辆信息
-				mui("#addBike").on('tap','button',function(){
-					plus.nativeUI.toast("扫描");
-					
-					//获取文本框
-					var text = $(this).parent().prev().find("input").val();
-					console.log("扫描时获取文本框:"+text)
-					
-					//调用相机
-						
-					
-					
-					
-				});
-					
+//				mui("#addBike").on('tap','button',function(){
+//					plus.nativeUI.toast("扫描");
+//					
+//					//获取文本框
+//					var text = $(this).parent().prev().find("input").val();
+//					console.log("扫描时获取文本框:"+text)
+//				});
+				
+				
 					
 				
 					
@@ -192,13 +217,14 @@
 		    	<tr id="addBike_tr" style="height: 50px;background-color:#D8D8D8;">
 		    		<td width="30px" align="center"><h4>序号</h4></td>
 		    		<td width="80px" align="center"><h4>车辆编号</h4></td>
-		    		<td width="20px" align="center"><h4>扫码添加</h4></td>
+		    		<!--<td width="20px" align="center"><h4>扫码添加</h4></td>-->
 		    	</tr>
 		    </table>
 		</div>
 		
 		<div style="margin-top: 20px;">
-			<button class="mui-btn-block mui-btn-blue" id="BtnSubmit">提交</button>
+			<button class="mui-btn-block mui-btn-blue" onclick="clicked('scan2.html',true,true)" >扫码添加车辆信息</button>
+			<button class="mui-btn-block mui-btn-red" id="BtnSubmit" >任务提交</button>
 		</div>
 	</body>
 

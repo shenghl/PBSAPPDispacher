@@ -374,7 +374,10 @@
 					"unfinishMission.html",
 					"unfinishMission_main.html"
 				],
-				"refer": [],
+				"refer": [
+					"barcode_scan2.html",
+					"scan2.html"
+				],
 				"priority": 0
 			},
 			"todayMission_main.html": {
@@ -430,6 +433,31 @@
 				"refer": [
 					"tofinish.html"
 				],
+				"priority": 0
+			},
+			"scan.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/app.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"barcode_scan2.html": {
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"scan2.html": {
+				"resources": [
+					"css/common.css"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

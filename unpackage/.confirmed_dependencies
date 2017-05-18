@@ -180,7 +180,9 @@
 		],
 		"refer": [
 			"unfinishMission.html",
-			"unfinishMission_main.html"
+			"unfinishMission_main.html",
+			"barcode_scan2.html",
+			"scan2.html"
 		]
 	},
 	"todayMission_main.html": {
@@ -236,6 +238,25 @@
 		"refer": [
 			"single_unfinish.html",
 			"tofinish.html"
+		]
+	},
+	"scan.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/app.js"
+		]
+	},
+	"barcode_scan2.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css"
+		]
+	},
+	"scan2.html": {
+		"resources": [
+			"css/common.css"
 		]
 	}
 }
