@@ -54,7 +54,8 @@
 			"G4.jpg",
 			"login.html",
 			"js/jquery-1.6.2.min.js",
-			"js/jquery.cookie.js"
+			"js/jquery.cookie.js",
+			"index_main.html"
 		],
 		"refer": [
 			"index.html",
@@ -63,7 +64,8 @@
 			"setting.html",
 			"my.html",
 			"login.html",
-			"location.html"
+			"location.html",
+			"index_main.html"
 		]
 	},
 	"regin.html": {
@@ -257,6 +259,15 @@
 	"scan2.html": {
 		"resources": [
 			"css/common.css"
+		]
+	},
+	"index_main.html": {
+		"resources": [
+			"index.html",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"index.html"
 		]
 	}
 }

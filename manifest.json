@@ -245,7 +245,8 @@
 					"G4.jpg",
 					"login.html",
 					"js/jquery-1.6.2.min.js",
-					"js/jquery.cookie.js"
+					"js/jquery.cookie.js",
+					"index_main.html"
 				],
 				"refer": [
 					"forget_password.html",
@@ -456,6 +457,14 @@
 			"scan2.html": {
 				"resources": [
 					"css/common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"index_main.html": {
+				"resources": [
+					"index.html",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0

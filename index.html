@@ -6,11 +6,68 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
     <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
-    
+    <script src="js/url.js"></script>
+    <script src="js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript">
-    mui.init()
+   		mui.init({
+				pullRefresh:{
+					container:"#pullrefresh",
+					down:{
+						callback:pulldownRefresh
+					}
+				}
+			});
+			
+			//下拉刷新的代码实现
+			function pulldownRefresh(){
+				setTimeout(function(){
+					//重新请求数据
+					getDate();
+					//结束刷新
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				},1500);
+			}
+    
+    
+    
+    //ajax请求
+    function getDate(){
+    	//定义未完成任务数量
+    	var mission_num = 0;
+    	mui.ajax(
+			url+'app_dispacher.action',{
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				var list = data.rows;
+				for(var i=0;i<list.length;i++){
+					var finishTime = list[i].finishTime;
+					if(finishTime==null){
+						mission_num+=1;
+					}else{
+						continue;
+					}
+				}
+    			//将未完成任务数量mission_num添加到页面
+    			var span = $("#mission_num1");
+    			span.html(mission_num)
+				
+				var span = $("#mission_num2");
+    			span.html(mission_num)
+			},
+			error:function(){
+				
+				//弹窗提示
+				plus.nativeUI.toast("获取信息失败！");
+			}
+		});
+    }
+    
     
     mui.plusReady(function(){
+    	//ajax请求
+		getDate();
+    	
     	var todayMission = document.getElementById("todayMission");
     	var unfinishMission = document.getElementById("unfinishMission");
     	var finishMission = document.getElementById("finishMisson");
@@ -55,10 +112,12 @@
     </script>
 </head>
 <body>
-    <header class="mui-bar mui-bar-nav">
+    <!--<header class="mui-bar mui-bar-nav">
     	
     	<h1 class="mui-title">主页</h1>
-    </header>
+    </header>-->
+    <div id="pullrefresh" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
     <div id="slider" class="mui-slider" >
       <div class="mui-slider-group mui-slider-loop">
         <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
@@ -108,13 +167,13 @@
     <ul class="mui-table-view mui-grid-view mui-grid-9">
     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="todayMission">
         <a href="#">
-            <span class="mui-icon mui-icon-info"></span>
+            <span class="mui-icon mui-icon-info"><span class="mui-badge mui-badge-red" id="mission_num1"></span></span>
             <div class="mui-media-body">今日任务</div>
         </a>
     </li>
     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="unfinishMission">
         <a href="#">
-            <span class="mui-icon mui-icon-flag"></span>
+            <span class="mui-icon mui-icon-flag"><span class="mui-badge mui-badge-red" id="mission_num2"></span></span>
             <div class="mui-media-body">未完成</div>
         </a>
     </li>
@@ -137,12 +196,12 @@
         </a>
     </li>
     
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="location">
+    <!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="location">
         <a href="#">
             <span class="mui-icon mui-icon-location"></span>
             <div class="mui-media-body">位置</div>
         </a>
-    </li>
+    </li>-->
    
    
     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="help">
@@ -160,6 +219,7 @@
         </ul>
     
     
-   
+   </div>
+   </div>
 </body>
 </html>
