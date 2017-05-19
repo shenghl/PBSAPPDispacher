@@ -178,7 +178,8 @@
 			"js/jquery-1.6.2.min.js",
 			"js/jquery-1.11.1.js",
 			"unfinishMission.html",
-			"unfinishMission_main.html"
+			"unfinishMission_main.html",
+			"js/common.js"
 		],
 		"refer": [
 			"unfinishMission.html",

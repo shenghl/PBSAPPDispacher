@@ -1,225 +1,228 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
-    <script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/url.js"></script>
-    <script src="js/jquery-1.6.2.min.js"></script>
-    <script type="text/javascript">
-   		mui.init({
-				pullRefresh:{
-					container:"#pullrefresh",
-					down:{
-						callback:pulldownRefresh
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/mui.css" />
+		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/url.js"></script>
+		<script src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: "#pullrefresh",
+					down: {
+						callback: pulldownRefresh
 					}
 				}
 			});
-			
+
 			//下拉刷新的代码实现
-			function pulldownRefresh(){
-				setTimeout(function(){
+			function pulldownRefresh() {
+				setTimeout(function() {
 					//重新请求数据
 					getDate();
 					//结束刷新
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-				},1500);
+				}, 1500);
 			}
-    
-    
-    
-    //ajax请求
-    function getDate(){
-    	//定义未完成任务数量
-    	var mission_num = 0;
-    	mui.ajax(
-			url+'app_dispacher.action',{
-			type:"post",
-			dataType:"json",
-			success:function(data){
-				var list = data.rows;
-				for(var i=0;i<list.length;i++){
-					var finishTime = list[i].finishTime;
-					if(finishTime==null){
-						mission_num+=1;
-					}else{
-						continue;
-					}
-				}
-    			//将未完成任务数量mission_num添加到页面
-    			var span = $("#mission_num1");
-    			span.html(mission_num)
+
+			//ajax请求
+			function getDate() {
+				//定义未完成任务数量
+				var u_mission_num = 0;
+				var mission_num = 0;
+				var finish_num = 0;
 				
-				var span = $("#mission_num2");
-    			span.html(mission_num)
-			},
-			error:function(){
-				
-				//弹窗提示
-				plus.nativeUI.toast("获取信息失败！");
+				mui.ajax(
+					url + 'app_dispacher.action', {
+						type: "post",
+						dataType: "json",
+						success: function(data) {
+							var list = data.rows;
+							mission_num = list.length;
+							for(var i = 0; i < list.length; i++) {
+								var finishTime = list[i].finishTime;
+								if(finishTime == null) {
+									u_mission_num += 1;
+								} else {
+									finish_num += 1;
+								}
+							}
+							//将任务数量添加到页面角标
+							var span = $("#mission_num1");
+							span.html(mission_num);
+
+							var span = $("#mission_num2");
+							span.html(u_mission_num);
+							
+							var span = $("#mission_num3");
+							span.html(finish_num);
+						},
+						error: function() {
+
+							//弹窗提示
+							plus.nativeUI.toast("获取信息失败！");
+						}
+					});
 			}
-		});
-    }
-    
-    
-    mui.plusReady(function(){
-    	//ajax请求
-		getDate();
-    	
-    	var todayMission = document.getElementById("todayMission");
-    	var unfinishMission = document.getElementById("unfinishMission");
-    	var finishMission = document.getElementById("finishMisson");
-    	var search = document.getElementById("search");
-    	var location = document.getElementById("location");
-    	
-    	//打开“今日任务”页面
-    	todayMission.addEventListener('tap',function(){
-    		mui.openWindow({
-    			url:"todayMission_main.html",
-    			id:"todayMission_main",
-    			show:{
-    				duration:300
-    			}
-    		});
-    	});
-    	
-    	//打开“未完成”页面
-    	unfinishMission.addEventListener('tap',function(){
-    		mui.openWindow({
-    			url:"unfinishMission_main.html",
-    			id:"unfinishMission_main",
-    			show:{
-    				duration:300
-    			}
-    		});
-    	});
-    	
-    	//打开“已完成”页面
-    	finishMission.addEventListener('tap',function(){
-    		mui.openWindow({
-    			url:"finishMission_main.html",
-    			id:"finishMission_main",
-    			show:{
-    				duration:300
-    			}
-    		});
-    	});
-    });
-    
-    
-    </script>
-</head>
-<body>
-    <!--<header class="mui-bar mui-bar-nav">
-    	
-    	<h1 class="mui-title">主页</h1>
-    </header>-->
-    <div id="pullrefresh" class="mui-scroll-wrapper">
+
+			mui.plusReady(function() {
+				//ajax请求
+				getDate();
+
+				var todayMission = document.getElementById("todayMission");
+				var unfinishMission = document.getElementById("unfinishMission");
+				var finishMission = document.getElementById("finishMisson");
+				var search = document.getElementById("search");
+				var location = document.getElementById("location");
+
+				//打开“今日任务”页面
+				todayMission.addEventListener('tap', function() {
+					mui.openWindow({
+						url: "todayMission_main.html",
+						id: "todayMission_main",
+						show: {
+							duration: 300
+						}
+					});
+				});
+
+				//打开“未完成”页面
+				unfinishMission.addEventListener('tap', function() {
+					mui.openWindow({
+						url: "unfinishMission_main.html",
+						id: "unfinishMission_main",
+						show: {
+							duration: 300
+						}
+					});
+				});
+
+				//打开“已完成”页面
+				finishMission.addEventListener('tap', function() {
+					mui.openWindow({
+						url: "finishMission_main.html",
+						id: "finishMission_main",
+						show: {
+							duration: 300
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+			    	
+			    	<h1 class="mui-title">主页</h1>
+			    </header>-->
+		<div id="pullrefresh" class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-    <div id="slider" class="mui-slider" >
-      <div class="mui-slider-group mui-slider-loop">
-        <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-        <div class="mui-slider-item mui-slider-item-duplicate">
-          <a href="#">
-            <img src="images/muwu.jpg" >
-          </a>
-        </div>
-        <!-- 第一张 -->
-        <div class="mui-slider-item">
-          <a href="#">
-            <img src="images/shuijiao.jpg" >
-          </a>
-        </div>
-        <!-- 第二张 -->
-        <div class="mui-slider-item">
-          <a href="#">
-            <img src="images/cbd.jpg" >
-          </a>
-        </div>
-        <!-- 第三张 -->
-        <div class="mui-slider-item">
-          <a href="#">
-            <img src="images/yuantiao.jpg" >
-          </a>
-        </div>
-        <!-- 第四张 -->
-        <div class="mui-slider-item">
-          <a href="#">
-            <img src="images/muwu.jpg" >
-          </a>
-        </div>
-        <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-        <div class="mui-slider-item mui-slider-item-duplicate">
-          <a href="#">
-            <img src="images/shuijiao.jpg">
-          </a>
-        </div>
-      </div>
-      <div class="mui-slider-indicator">
-        <div class="mui-indicator mui-active"></div>
-        <div class="mui-indicator"></div>
-        <div class="mui-indicator"></div>
-        <div class="mui-indicator"></div>
-      </div>
-    </div>
-    <ul class="mui-table-view mui-grid-view mui-grid-9">
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="todayMission">
-        <a href="#">
-            <span class="mui-icon mui-icon-info"><span class="mui-badge mui-badge-red" id="mission_num1"></span></span>
-            <div class="mui-media-body">今日任务</div>
-        </a>
-    </li>
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="unfinishMission">
-        <a href="#">
-            <span class="mui-icon mui-icon-flag"><span class="mui-badge mui-badge-red" id="mission_num2"></span></span>
-            <div class="mui-media-body">未完成</div>
-        </a>
-    </li>
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="finishMisson">
-        <a href="#">
-            <span class="mui-icon mui-icon-checkmarkempty"></span>
-            <div class="mui-media-body">已完成</div>
-        </a>
-    </li>
-    <!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-            <span class="mui-icon mui-icon-email"><span class="mui-badge mui-badge-red">5</span></span>
-            <div class="mui-media-body">邮件</div>
-        </a>
-    </li>-->
-     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="search">
-        <a href="#">
-            <span class="mui-icon mui-icon-search"></span>
-            <div class="mui-media-body">搜索</div>
-        </a>
-    </li>
-    
-    <!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="location">
-        <a href="#">
-            <span class="mui-icon mui-icon-location"></span>
-            <div class="mui-media-body">位置</div>
-        </a>
-    </li>-->
-   
-   
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="help">
-        <a href="#">
-            <span class="mui-icon mui-icon-help"></span>
-            <div class="mui-media-body">帮助</div>
-        </a>
-    </li>
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="contactUs">
-        <a href="#">
-            <span class="mui-icon mui-icon-chatboxes"></span>
-            <div class="mui-media-body">联系我们</div>
-        </a>
-    </li>
-        </ul>
-    
-    
-   </div>
-   </div>
-</body>
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="images/muwu.jpg">
+							</a>
+						</div>
+						<!-- 第一张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="images/shuijiao.jpg">
+							</a>
+						</div>
+						<!-- 第二张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="images/cbd.jpg">
+							</a>
+						</div>
+						<!-- 第三张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="images/yuantiao.jpg">
+							</a>
+						</div>
+						<!-- 第四张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="images/muwu.jpg">
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="images/shuijiao.jpg">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="todayMission">
+						<a href="#">
+							<span class="mui-icon mui-icon-info"><span class="mui-badge mui-badge-blue" id="mission_num1"></span></span>
+							<div class="mui-media-body">今日任务</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="unfinishMission">
+						<a href="#">
+							<span class="mui-icon mui-icon-flag"><span class="mui-badge mui-badge-red" id="mission_num2"></span></span>
+							<div class="mui-media-body">未完成</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="finishMisson">
+						<a href="#">
+							<span class="mui-icon mui-icon-checkmarkempty"><span class="mui-badge mui-badge-inverted mui-badge-green" id="mission_num3"></span></span>
+							<div class="mui-media-body">已完成</div>
+						</a>
+					</li>
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+			        <a href="#">
+			            <span class="mui-icon mui-icon-email"><span class="mui-badge mui-badge-red">5</span></span>
+			            <div class="mui-media-body">邮件</div>
+			        </a>
+			    </li>-->
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="search">
+						<a href="#">
+							<span class="mui-icon mui-icon-search"></span>
+							<div class="mui-media-body">搜索</div>
+						</a>
+					</li>
+
+					<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="location">
+			        <a href="#">
+			            <span class="mui-icon mui-icon-location"></span>
+			            <div class="mui-media-body">位置</div>
+			        </a>
+			    </li>-->
+
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="help">
+						<a href="#">
+							<span class="mui-icon mui-icon-help"></span>
+							<div class="mui-media-body">帮助</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="contactUs">
+						<a href="#">
+							<span class="mui-icon mui-icon-chatboxes"></span>
+							<div class="mui-media-body">联系我们</div>
+						</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</body>
+
 </html>
