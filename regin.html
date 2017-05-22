@@ -25,16 +25,21 @@
 		</header>
 		<div class="mui-content">
 		    <form class="mui-input-group">
-		    	<div class="mui-input-row">
-		    		<label for="">账号</label>
+		    	<div class="mui-input-row" style="height: 50px;" >
+		    		<label for="" style="margin-top: 5px;">账号</label>
 		    		<input type="text" class="mui-input mui-input-clear" id="account" placeholder="请输入注册账号"/>
 		    	</div>
-		    	<div class="mui-input-row">
-		    		<label for="">密码</label>
+		    	<div class="mui-input-row" style="height: 50px;">
+		    		<label for="" style="margin-top: 5px;">密码</label>
 		    		<input type="password" class="mui-input mui-input-clear" id="password" placeholder="请输入密码"/>
-		    	</div><div class="mui-input-row">
-		    		<label for="">确认密码</label>
+		    	</div>
+		    	<div class="mui-input-row" style="height: 50px;">
+		    		<label for="" style="margin-top: 5px;">确认密码</label>
 		    		<input type="password" class="mui-input mui-input-clear" id="sure_password" placeholder="请再次输入密码"/>
+		    	</div>
+		    	<div class="mui-input-row" style="height: 50px;">
+		    		<label for="" style="margin-top: 5px;">车辆信息</label>
+		    		<input type="text" class="mui-input mui-input-clear" id="car" placeholder="请输入车辆信息"/>
 		    	</div>
 		    </form>
 		    <div class="mui-content-padded">
@@ -49,18 +54,21 @@
 				var password = document.getElementById("password");
 				//确认密码
 				var sure_password = document.getElementById("sure_password");
+				//车辆信息
+				var car = document.getElementById("car");
 				//提交按钮
 				var regButton = document.getElementById("reg");
 				
-				
 				//添加注册按钮监听事件
 				regButton.addEventListener('tap',function(){
-					console.log("account=="+account.value)
-					console.log("password=="+password.value)
+					console.log("account==:"+account.value)
+					console.log("password==:"+password.value)
+					console.log("car==:"+car.value)
 					//验证账号输入框是否为空
 					
 					var passwordValue = password.value;
 					var sure_passwordValue = sure_password.value;
+					var carValue = car.value;
 					if(account.value.length == 0){
 						plus.nativeUI.toast("账号不能为空！")
 						return;
@@ -78,13 +86,20 @@
 						return;
 					}
 					
+					//验证车辆输入框是否为空
+					if(car.value.length == 0){
+						plus.nativeUI.toast("车辆信息不能为空!");
+						return;
+					}
+					
 					//发送ajax请求
 					mui.ajax(
 						url+'app_userReg.action',
 						{
 						data:{
 							account:account.value,
-							password:password.value
+							password:password.value,
+							car:car.value
 						},
 						dataType:'json',
 						type:'post',
@@ -107,8 +122,8 @@
 							});
 							}
 						},
-						error:function(data){
-							plus.nativeUI.toast("注册账号失败！请稍候再试"+data)
+						error:function(){
+							plus.nativeUI.toast("注册账号失败！请稍候再试")
 						}
 						
 					});

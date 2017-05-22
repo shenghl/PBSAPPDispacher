@@ -149,7 +149,8 @@
 		"refer": [
 			"login.html",
 			"dispacher_recode_main.html",
-			"change_pwd.html"
+			"change_pwd.html",
+			"car.html"
 		]
 	},
 	"login.html": {
@@ -309,6 +310,16 @@
 		],
 		"refer": [
 			"login.html"
+		]
+	},
+	"car.html": {
+		"resources": [
+			"css/mui.min.css",
+			"car.html"
+		],
+		"refer": [
+			"car.html",
+			"tofinish.html"
 		]
 	}
 }

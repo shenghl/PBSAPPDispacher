@@ -47,7 +47,14 @@
 				
 			//车辆信息
 			document.getElementById('btnCar').addEventListener('tap',function(){
-					mui.alert("===车辆信息===")
+//					mui.alert("===车辆信息===")
+					mui.openWindow({
+					url:"car.html",
+					id:"car",
+					show:{
+						duration:300
+						}
+					});
 			});	
 				
 

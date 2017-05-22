@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script src="js/url.js"></script>
+		<script src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				
+				var operator = localStorage.getItem("account");
+				console.log("--------"+operator)
+				//ajax获取数据
+				mui.ajax(
+					url+'app_car.action',
+					{
+					data:{
+						operator:operator
+					},
+					type:"post",
+					dataType:"json",
+					timeout:10000,
+					success:function(data){
+						var list = data.rows;
+						for(var i=0;i<list.length;i++){
+							
+							var carType = list[0].carType;
+							var plateNumber = list[0].plateNumber;
+							var area = list[0].area;
+							
+							if(carType == null || carType == ""){
+								$("#carType").val("暂无");
+							}
+							
+							if(area == null){
+								$("#area").val("暂无");
+								
+							}
+							
+							//信息写入
+							$("#plateNumber").val(plateNumber);
+						}
+							$("#operator").val(operator);
+						
+					},
+					error:function(){
+						plus.nativeUI.toast("获取车辆信息失败！");
+					}
+				})
+				
+				
+				
+				
+				
+				
+				
+				//提交按钮单击事件
+				document.getElementById("btnToChange").addEventListener('tap',function(){
+//					mui.openWindow({
+//						url:"tofinish.html",
+//						id:"tofinish",
+//					})
+					mui.alert("==点击修改车辆==")
+				});
+			});
+			
+		</script>
+	</head>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">车辆信息</h1>
+		</header>
+		<div class="mui-content" align="center">
+			<!--<form id='form' class="mui-input-group" >-->
+				<div class="mui-input-row"  style="height: 70px;" >
+					<label style="margin:15px auto;color:green">车牌号码:</label>
+					<input id='plateNumber' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row"  style="height: 70px;"> 
+					<label style="margin: 15px auto;color: green;">车辆类型:</label>
+					<input id='carType' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row"  style="height: 70px;">
+					<label style="margin:15px auto;color: green;">运行区域:</label>
+					<input id='area' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row" style="height: 70px;">
+					<label style="margin:15px auto;color: green;">操作人员:</label>
+					<input id='operator' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div style="margin-top: 80px;">
+					<button id="btnToChange" class="mui-btn mui-btn-block mui-btn-blue">修改车辆信息</button>
+				</div>
+			<!--</form>-->
+		</div>
+	<body>
+	</body>
+
+</html>
