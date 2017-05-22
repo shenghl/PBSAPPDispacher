@@ -72,7 +72,8 @@
 		"resources": [
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/mui.min.js"
+			"js/mui.min.js",
+			"js/url.js"
 		],
 		"refer": [
 			"login.html"
@@ -146,7 +147,8 @@
 			"images/touxiang.jpg"
 		],
 		"refer": [
-			"login.html"
+			"login.html",
+			"dispacher_recode_main.html"
 		]
 	},
 	"login.html": {
@@ -226,12 +228,14 @@
 			"js/common.js",
 			"css/common.css",
 			"js/immersed.js"
-		]
+		],
+		"refer": []
 	},
 	"single_finish.html": {
 		"resources": [
 			"css/mui.min.css"
-		]
+		],
+		"refer": []
 	},
 	"single_unfinish.html": {
 		"resources": [
@@ -249,26 +253,53 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/app.js"
-		]
+		],
+		"refer": []
 	},
 	"barcode_scan2.html": {
 		"resources": [
 			"js/common.js",
 			"css/common.css"
-		]
+		],
+		"refer": []
 	},
 	"scan2.html": {
 		"resources": [
 			"css/common.css"
-		]
+		],
+		"refer": []
 	},
 	"index_main.html": {
 		"resources": [
 			"index.html",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"js/mui.min.js"
 		],
 		"refer": [
 			"index.html"
+		]
+	},
+	"dispacher_recode_main.html": {
+		"resources": [
+			"css/mui.min.css",
+			"dispacher_recode.html"
+		],
+		"refer": [
+			"dispacher_recode.html"
+		]
+	},
+	"dispacher_recode.html": {
+		"resources": [
+			"css/mui.min.css"
+		],
+		"refer": [
+			"single_finish.html",
+			"single_finish_recode.html"
+		]
+	},
+	"single_finish_recode.html": {
+		"resources": [
+			"css/mui.min.css"
 		]
 	}
 }

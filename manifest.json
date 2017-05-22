@@ -261,7 +261,8 @@
 				"resources": [
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"js/url.js"
 				],
 				"refer": [
 					"login.html"
@@ -340,7 +341,8 @@
 					"images/touxiang.jpg"
 				],
 				"refer": [
-					"login.html"
+					"login.html",
+					"dispacher_recode_main.html"
 				],
 				"priority": 0
 			},
@@ -465,6 +467,32 @@
 			"index_main.html": {
 				"resources": [
 					"index.html",
+					"css/mui.min.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"dispacher_recode_main.html": {
+				"resources": [
+					"css/mui.min.css",
+					"dispacher_recode.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"dispacher_recode.html": {
+				"resources": [
+					"css/mui.min.css"
+				],
+				"refer": [
+					"single_finish.html",
+					"single_finish_recode.html"
+				],
+				"priority": 0
+			},
+			"single_finish_recode.html": {
+				"resources": [
 					"css/mui.min.css"
 				],
 				"refer": [],

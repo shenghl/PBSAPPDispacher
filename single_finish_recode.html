@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				//获取todayMission.html页面传过来的数据
+				var data = plus.webview.currentWebview();
+				//站点数据
+				var mission_data = data.name;
+				console.log("今日任务传过来的的rentId:"+mission_data)
+				
+				//获取参数
+				var array = mission_data.split(",");
+				var rentId = array[0];
+				var rentName = array[1];
+				var handle = array[2];
+				var num = array[3];
+				var operator = array[4]
+				var state = array[5];
+				var finishTime = array[6];
+				//写入表单
+				$("#rentName").val(rentName);
+				$("#handle").val(handle);
+				$("#num").val(num);
+				$("#operator").val(operator);
+				$("#state").val(state);
+				$("#finishTime").val(finishTime);
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">任务详情</h1>
+		</header>
+		<div class="mui-content" align="center">
+			<form id='form' class="mui-input-group" >
+				<div class="mui-input-row"  style="height: 70px;" >
+					<label style="margin:15px auto;color:green">站点名称:</label>
+					<input id='rentName' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row"  style="height: 70px;"> 
+					<label style="margin: 15px auto;color: green;">执行操作:</label>
+					<input id='handle' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row"  style="height: 70px;">
+					<label style="margin:15px auto;color: green;">操作数量:</label>
+					<input id='num' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row"  style="height: 70px;">
+					<label style="margin:15px auto;color: green;">操作人员:</label>
+					<input id='operator' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row" style="height: 70px;">
+					<label style="margin:15px auto;color: green;">任务状态:</label>
+					<input id='state' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+				<div class="mui-input-row" style="height: 70px;">
+					<label style="margin: 15px auto;color: green;">完成时间:</label>
+					<input id='finishTime' type="text" readonly style="margin: 15px auto;color: green;">
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>

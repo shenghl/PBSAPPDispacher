@@ -6,20 +6,23 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<script src="js/jquery-1.6.2.min.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/url.js"></script>
+		<script src="js/jquery-1.6.2.min.js"></script>
 		<script type="text/javascript">
 			mui.init({
 				pullRefresh:{
 					container:"#pullrefresh",
 					down:{
 						callback:pulldownRefresh
+					},
+					up:{
+						callback:pullupRefresh
 					}
 				}
 			});
 			
-			//下拉刷新代码实现
+			//下拉刷新
 			function pulldownRefresh(){
 				setTimeout(function(){
 					//清除数据
@@ -34,8 +37,14 @@
 				},1500);
 			}
 			
+			//上拉加载
+			function pullupRefresh(){
+				
+			}
+			
 			//ajax请求
 			function getDate(){
+				var user = localStorage.getItem("account");
 				mui.ajax(
 //					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',
 					url+'app_dispacher.action',
@@ -53,14 +62,15 @@
 							var handle = list[i].zt;
 							var num = list[i].num;
 							var finishTime = list[i].finishTime;
+							var operator = list[i].operator;
 							var state;
-							if(finishTime != null){
+							if(operator == user){
 								state = "已完成";
 								var sli = '';	
 						    	 	sli+='	<li class="mui-table-view-cell mui-media">';
 								    sli+='        <div class="mui-media-body" style="color:green">';
 								    sli+= rentName;
-								    sli+='            <p class="mui-ellipsis">'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;"+state+"&nbsp;&nbsp;&nbsp;&nbsp;"+finishTime+'</p>';
+								    sli+='            <p class="mui-ellipsis">'+handle+"&nbsp;&nbsp;&nbsp;&nbsp;"+num+"辆&nbsp;&nbsp;&nbsp;&nbsp;操作员"+operator+state+"&nbsp;&nbsp;&nbsp;&nbsp;"+finishTime+'</p>';
 								    sli+='        </div>';
 								    sli+='</li>';
 
@@ -70,12 +80,9 @@
 								$li.data("num",num);
 								$li.data("state",state);
 								$li.data("finishTime",finishTime);
+								$li.data("operator",operator);
 								
-								
-								
-								
-								
-								$("#finishMission").append($li);
+								$("#finishMission_recode").append($li);
 							}
 						}
 						
@@ -88,7 +95,7 @@
 							//添加提示信息
 							var sdiv = "";
 							    sdiv+='<div id="message">';
-								sdiv+='		<p style="font-size: 20px;margin-top: 70px;" align="center">^_^……当前任务啦~\(≧▽≦)/~啦啦啦……^_^</p>';
+								sdiv+='		<p style="font-size: 20px;margin-top: 70px;" align="center">^_^……当前没有记录啦~\(≧▽≦)/~啦啦啦……^_^</p>';
 								sdiv+='</div>';
 								
 								var $div = $(sdiv);
@@ -116,9 +123,9 @@
 				//ajax请求数据
 				getDate();
 				
-				//单击列表项事件
+					//单击列表项事件
 				//点击列表选项操作
-				mui("#finishMission").on('tap','li',function(){
+				mui("#finishMission_recode").on('tap','li',function(){
 					var li = $(this);
 					var rentId = li.data("rentId");
 					var rentName = li.data("rentName");
@@ -126,40 +133,28 @@
 					var num = li.data("num");	
 					var state = li.data("state");
 					var finishTime = li.data("finishTime");
-					
+					var operator = li.data("operator");
 					//测试
 					console.log("todayMission中的测试rentId:"+rentId);
-				
 						mui.openWindow({
-							url:"single_finish.html",
-							id:"single_finish",
+							url:"single_finish_recode.html",
+							id:"single_finish_recode",
 							extras:{
-								name:rentId+","+rentName+","+handle+","+num+","+state+","+finishTime
+								name:rentId+","+rentName+","+handle+","+num+","+operator+","+state+","+finishTime
 							}
 						});
-					
-				});
-				
+					});
 			});
+			
 		</script>
 	</head>
 
 	<body>
-		<div id="pullrefresh" class="mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<!--<div class="mui-content">
-				    <table id="finishMission" border="1" width="100%">
-				    	<tr  style="height: 50px;">
-				    		<td width="50px" align="center"><h4>站点</h4></td>
-				    		<td width="50px" align="center"><h4>操作</h4></td>
-				    		<td width="50px" align="center"><h4>数量</h4></td>
-				    		<td width="50px" align="center"><h4>状态</h4></td>
-				    		<td width="80px" align="center"><h4>完成时间</h4></td>
-				    	</tr>
-				    </table>
-				</div>-->
-				
-				 <ul class="mui-table-view" id="finishMission">
+		<!--下拉刷新容器-->
+        <div id="pullrefresh" class="mui-scroll-wrapper" >
+        	<div class="mui-scroll">
+        		<!--描述：数据列表-->
+				    <ul class="mui-table-view" id="finishMission_recode">
 					    <!--<li class="mui-table-view-cell mui-media">
 					        <a href="javascript:;">
 					            <div class="mui-media-body" >
@@ -168,11 +163,9 @@
 					            </div>
 					        </a>
 					    </li>-->
-				</ul>
-				
-				
-			</div>
-		</div>
+					</ul>
+        	</div>
+        </div>
 	</body>
 
 </html>

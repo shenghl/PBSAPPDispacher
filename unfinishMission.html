@@ -39,6 +39,7 @@
 			//ajax请求
 			function getDate(){
 				mui.ajax(
+//					'http://192.168.191.1:8088/pbsproject/map/app_dispacher.action',
 					url+'app_dispacher.action',
 					{
 					data:{
@@ -95,7 +96,7 @@
 								sdiv+='</div>';
 								
 								var $div = $(sdiv);
-								$(".mui-table-view").append($div);
+								$(".mui-scroll-wrapper").append($div);
 						}
 						
 						//关闭等待页面
