@@ -148,7 +148,8 @@
 		],
 		"refer": [
 			"login.html",
-			"dispacher_recode_main.html"
+			"dispacher_recode_main.html",
+			"change_pwd.html"
 		]
 	},
 	"login.html": {
@@ -300,6 +301,14 @@
 	"single_finish_recode.html": {
 		"resources": [
 			"css/mui.min.css"
+		]
+	},
+	"change_pwd.html": {
+		"resources": [
+			"css/mui.min.css"
+		],
+		"refer": [
+			"login.html"
 		]
 	}
 }

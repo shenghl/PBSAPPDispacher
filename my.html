@@ -29,13 +29,18 @@
 						duration:300
 					}
 				});
-				
 			});
-			
 			
 			//修改密码
 			document.getElementById('btnChangePWD').addEventListener('tap',function(){
-					mui.alert("===修改密码===")
+//					mui.alert("===修改密码===")
+					mui.openWindow({
+					url:"change_pwd.html",
+					id:"change_pwd",
+					show:{
+						duration:300
+						}
+					});
 				});	
 				
 				

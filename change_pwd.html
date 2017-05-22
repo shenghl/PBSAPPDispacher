@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script src="js/url.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				//获取文本框输入的内容
+				var oldpassword = document.getElementById("oldpassword");
+				var newpassword = document.getElementById("newpassword");
+				var sure_newpassword = document.getElementById("sure_newpassword");
+				var btnChangePWD = document.getElementById("btnChangePWD");
+				var user = localStorage.getItem("account");
+				
+				//按钮事件绑定
+				btnChangePWD.addEventListener('tap',function(){
+					//输入框验证
+					if(oldpassword.value ==null || oldpassword.value ==""){
+						plus.nativeUI.toast("请填写完整信息!");
+						return;
+					}
+					
+					if(newpassword.value ==null || newpassword.value ==""){
+						plus.nativeUI.toast("请填写完整信息!");
+						return;
+					}
+
+					if(sure_newpassword.value ==null || sure_newpassword.value ==""){
+						plus.nativeUI.toast("请填写完整信息!");
+						return;
+					}
+
+					if(newpassword.value != sure_newpassword.value){
+						plus.nativeUI.toast("新密码两次输入不一致，请重新输入!");
+						return;
+					}
+
+				//等待页面，增加用户使用体验
+				plus.nativeUI.showWaiting("数据提交中，请稍候……");
+				
+				//ajax请求
+				mui.ajax(
+					url+'/app_changePWD.action',{
+					data:{
+						account:user,
+						oldpassword:oldpassword.value,
+						newpassword:newpassword.value
+					},
+					dataType:"json",
+					type:"post",
+					timeout:10000,
+					success:function(data){
+						//关闭等待页面
+						plus.nativeUI.closeWaiting();
+						if(data.resultInfo.type==1){
+							plus.nativeUI.toast("密码修改成功！请重新登录！");
+							//调转到未完成任务页面
+							mui.openWindow({
+								url:"login.html",
+								id:"login"
+							})
+						}else{
+							var message = data.resultInfo.message;
+							plus.nativeUI.toast(message);
+						}
+					},
+					error:function(){
+						//关闭等待页面
+						plus.nativeUI.closeWaiting();
+						//弹窗提示
+						plus.nativeUI.toast("提交失败！请稍候重试！");
+					}
+				});
+				});
+			});
+			
+		</script>
+	</head>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-title">修改密码</h1>
+		</header>
+		<div class="mui-content">
+		    <form class="mui-input-group">
+		    	<div class="mui-input-row">
+		    		<label for="">原密码</label>
+		    		<input type="password" class="mui-input mui-input-clear" id="oldpassword" placeholder="请输入账号原密码"/>
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">新密码</label>
+		    		<input type="password" class="mui-input mui-input-clear" id="newpassword" placeholder="请输入新密码"/>
+		    	</div><div class="mui-input-row">
+		    		<label for="">确认新密码</label>
+		    		<input type="password" class="mui-input mui-input-clear" id="sure_newpassword" placeholder="确认新密码"/>
+		    	</div>
+		    </form>
+		    <div class="mui-content-padded">
+		    	<button id="btnChangePWD" class="mui-btn mui-btn-block mui-btn-primary">提交</button>
+		    </div>
+		</div>
+	<body>
+	</body>
+
+</html>

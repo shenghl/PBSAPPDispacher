@@ -342,7 +342,8 @@
 				],
 				"refer": [
 					"login.html",
-					"dispacher_recode_main.html"
+					"dispacher_recode_main.html",
+					"change_pwd.html"
 				],
 				"priority": 0
 			},
@@ -496,6 +497,15 @@
 					"css/mui.min.css"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"change_pwd.html": {
+				"resources": [
+					"css/mui.min.css"
+				],
+				"refer": [
+					"login.html"
+				],
 				"priority": 0
 			}
 		},
