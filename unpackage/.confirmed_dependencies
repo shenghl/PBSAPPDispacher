@@ -1,325 +1,336 @@
 {
-	"index.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"fonts/mui.ttf",
-			"main.html",
-			"css/mui.css",
-			"G3.jpg",
-			"G1.jpg",
-			"G2.jpg",
-			"G5.jpeg",
-			"1.jpg",
-			"4.jpg",
-			"2.jpg",
-			"3.jpg",
-			"js/mui.js",
-			"8.jpg",
-			"7.jpg",
-			"6.jpg",
-			"5.jpg",
-			"5.jpeg",
-			"images/2.jpg",
-			"images/1.jpg",
-			"images/3.jpg",
-			"images/4.jpg",
-			"images/cbd.jpg",
-			"images/yuantiao.jpg",
-			"images/muwu.jpg",
-			"images/shuijiao.jpg"
-		],
-		"refer": [
-			"main.html",
-			"regin.html",
-			"forget_password.html",
-			"todayMission.html",
-			"finishMission.html",
-			"unfinishMission.html",
-			"unfinishMission_main.html",
-			"todayMission_main.html",
-			"finishMission_main.html"
-		]
-	},
-	"main.html": {
-		"resources": [
-			"index.html",
-			"fonts/mui.ttf",
-			"js/mui.js",
-			"css/mui.css",
-			"6.jpg",
-			"G1.jpg",
-			"G2.jpg",
-			"G3.jpg",
-			"G4.jpg",
-			"login.html",
-			"js/jquery-1.6.2.min.js",
-			"js/jquery.cookie.js",
-			"index_main.html"
-		],
-		"refer": [
-			"index.html",
-			"forget_password.html",
-			"regin.html",
-			"setting.html",
-			"my.html",
-			"login.html",
-			"location.html",
-			"index_main.html"
-		]
-	},
-	"regin.html": {
-		"resources": [
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.min.js",
-			"js/url.js"
-		],
-		"refer": [
-			"login.html"
-		]
-	},
-	"forget_password.html": {
-		"resources": [
-			"css/mui.min.css",
-			"fonts/mui.ttf",
-			"js/app.js",
-			"js/mui.min.js",
-			"css/style.css"
-		],
-		"refer": []
-	},
-	"setting.html": {
-		"resources": [
-			"css/mui.min.css",
-			"js/app.js",
-			"js/mui.locker.js",
-			"js/feedback.js",
-			"css/feedback-page.css",
-			"js/feedback-page.js",
-			"js/mui.view.js",
-			"js/mui.min.js"
-		],
-		"refer": []
-	},
-	"todayMission.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/jquery.easyui.min.1.2.2.js",
-			"js/jquery-1.4.4.min.js",
-			"js/jquery-1.6.2.min.js"
-		],
-		"refer": [
-			"tofinish.html",
-			"single_finish.html",
-			"single_unfinish.html"
-		]
-	},
-	"finishMission.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/jquery-1.4.4.min.js"
-		],
-		"refer": [
-			"single_finish.html"
-		]
-	},
-	"unfinishMission.html": {
-		"resources": [
-			"css/mui.min.css",
-			"js/mui.min.js",
-			"js/jquery-1.4.4.min.js",
-			"tofinish.html",
-			"js/jquery-1.6.2.min.js"
-		],
-		"refer": [
-			"tofinish.html",
-			"single_unfinish.html"
-		]
-	},
-	"my.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/jquery-1.6.2.min.js",
-			"images/touxiang.jpg"
-		],
-		"refer": [
-			"login.html",
-			"dispacher_recode_main.html",
-			"change_pwd.html",
-			"car.html"
-		]
-	},
-	"login.html": {
-		"resources": [
-			"js/app.js",
-			"css/mui.min.css",
-			"css/style.css",
-			"js/mui.enterfocus.js",
-			"main.html",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"js/cookie_util.js",
-			"js/jquery.cookie.js",
-			"js/jquery-1.4.4.min.js",
-			"js/jquery-1.6.2.min.js",
-			"js/url.js"
-		],
-		"refer": [
-			"main.html",
-			"regin.html",
-			"forget_password.html"
-		]
-	},
-	"tofinish.html": {
-		"resources": [
-			"css/mui.min.css",
-			"js/mui.min.js",
-			"js/jquery-1.4.4.min.js",
-			"js/jquery-1.6.2.min.js",
-			"js/jquery-1.11.1.js",
-			"unfinishMission.html",
-			"unfinishMission_main.html",
-			"js/common.js"
-		],
-		"refer": [
-			"unfinishMission.html",
-			"unfinishMission_main.html",
-			"barcode_scan2.html",
-			"scan2.html"
-		]
-	},
-	"todayMission_main.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"todayMission.html"
-		],
-		"refer": [
-			"todayMission.html"
-		]
-	},
-	"unfinishMission_main.html": {
-		"resources": [
-			"unfinishMission.html",
-			"css/mui.min.css",
-			"tofinish.html"
-		],
-		"refer": [
-			"unfinishMission.html",
-			"tofinish.html"
-		]
-	},
-	"finishMission_main.html": {
-		"resources": [
-			"finishMission.html",
-			"js/mui.min.js",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"finishMission.html"
-		]
-	},
-	"location.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/common.js",
-			"css/common.css",
-			"js/immersed.js"
-		],
-		"refer": []
-	},
-	"single_finish.html": {
-		"resources": [
-			"css/mui.min.css"
-		],
-		"refer": []
-	},
-	"single_unfinish.html": {
-		"resources": [
-			"css/mui.min.css",
-			"single_unfinish.html"
-		],
-		"refer": [
-			"single_unfinish.html",
-			"tofinish.html"
-		]
-	},
-	"scan.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/app.js"
-		],
-		"refer": []
-	},
-	"barcode_scan2.html": {
-		"resources": [
-			"js/common.js",
-			"css/common.css"
-		],
-		"refer": []
-	},
-	"scan2.html": {
-		"resources": [
-			"css/common.css"
-		],
-		"refer": []
-	},
-	"index_main.html": {
-		"resources": [
-			"index.html",
-			"css/mui.min.css",
-			"js/mui.min.js"
-		],
-		"refer": [
-			"index.html"
-		]
-	},
-	"dispacher_recode_main.html": {
-		"resources": [
-			"css/mui.min.css",
-			"dispacher_recode.html"
-		],
-		"refer": [
-			"dispacher_recode.html"
-		]
-	},
-	"dispacher_recode.html": {
-		"resources": [
-			"css/mui.min.css"
-		],
-		"refer": [
-			"single_finish.html",
-			"single_finish_recode.html"
-		]
-	},
-	"single_finish_recode.html": {
-		"resources": [
-			"css/mui.min.css"
-		]
-	},
-	"change_pwd.html": {
-		"resources": [
-			"css/mui.min.css"
-		],
-		"refer": [
-			"login.html"
-		]
-	},
-	"car.html": {
-		"resources": [
-			"css/mui.min.css",
-			"car.html"
-		],
-		"refer": [
-			"car.html",
-			"tofinish.html"
-		]
-	}
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "main.html",
+      "css/mui.css",
+      "G3.jpg",
+      "G1.jpg",
+      "G2.jpg",
+      "G5.jpeg",
+      "1.jpg",
+      "4.jpg",
+      "2.jpg",
+      "3.jpg",
+      "js/mui.js",
+      "8.jpg",
+      "7.jpg",
+      "6.jpg",
+      "5.jpg",
+      "5.jpeg",
+      "images/2.jpg",
+      "images/1.jpg",
+      "images/3.jpg",
+      "images/4.jpg",
+      "images/cbd.jpg",
+      "images/yuantiao.jpg",
+      "images/muwu.jpg",
+      "images/shuijiao.jpg"
+    ],
+    "refer": [
+      "main.html",
+      "regin.html",
+      "forget_password.html",
+      "todayMission.html",
+      "finishMission.html",
+      "unfinishMission.html",
+      "unfinishMission_main.html",
+      "todayMission_main.html",
+      "finishMission_main.html"
+    ]
+  },
+  "main.html": {
+    "resources": [
+      "index.html",
+      "fonts/mui.ttf",
+      "js/mui.js",
+      "css/mui.css",
+      "6.jpg",
+      "G1.jpg",
+      "G2.jpg",
+      "G3.jpg",
+      "G4.jpg",
+      "login.html",
+      "js/jquery-1.6.2.min.js",
+      "js/jquery.cookie.js",
+      "index_main.html"
+    ],
+    "refer": [
+      "index.html",
+      "forget_password.html",
+      "regin.html",
+      "setting.html",
+      "my.html",
+      "login.html",
+      "location.html",
+      "index_main.html"
+    ]
+  },
+  "regin.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/url.js"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "forget_password.html": {
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "js/app.js",
+      "js/mui.min.js",
+      "css/style.css"
+    ],
+    "refer": []
+  },
+  "setting.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/app.js",
+      "js/mui.locker.js",
+      "js/feedback.js",
+      "css/feedback-page.css",
+      "js/feedback-page.js",
+      "js/mui.view.js",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "todayMission.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/jquery.easyui.min.1.2.2.js",
+      "js/jquery-1.4.4.min.js",
+      "js/jquery-1.6.2.min.js"
+    ],
+    "refer": [
+      "tofinish.html",
+      "single_finish.html",
+      "single_unfinish.html"
+    ]
+  },
+  "finishMission.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/jquery-1.4.4.min.js"
+    ],
+    "refer": [
+      "single_finish.html"
+    ]
+  },
+  "unfinishMission.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/jquery-1.4.4.min.js",
+      "tofinish.html",
+      "js/jquery-1.6.2.min.js"
+    ],
+    "refer": [
+      "tofinish.html",
+      "single_unfinish.html"
+    ]
+  },
+  "my.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/jquery-1.6.2.min.js",
+      "images/touxiang.jpg"
+    ],
+    "refer": [
+      "login.html",
+      "dispacher_recode_main.html",
+      "change_pwd.html",
+      "car.html"
+    ]
+  },
+  "login.html": {
+    "resources": [
+      "js/app.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/mui.enterfocus.js",
+      "main.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "js/cookie_util.js",
+      "js/jquery.cookie.js",
+      "js/jquery-1.4.4.min.js",
+      "js/jquery-1.6.2.min.js",
+      "js/url.js"
+    ],
+    "refer": [
+      "main.html",
+      "regin.html",
+      "forget_password.html"
+    ]
+  },
+  "tofinish.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/jquery-1.4.4.min.js",
+      "js/jquery-1.6.2.min.js",
+      "js/jquery-1.11.1.js",
+      "unfinishMission.html",
+      "unfinishMission_main.html",
+      "js/common.js"
+    ],
+    "refer": [
+      "unfinishMission.html",
+      "unfinishMission_main.html",
+      "barcode_scan2.html",
+      "scan2.html"
+    ]
+  },
+  "todayMission_main.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "todayMission.html"
+    ],
+    "refer": [
+      "todayMission.html"
+    ]
+  },
+  "unfinishMission_main.html": {
+    "resources": [
+      "unfinishMission.html",
+      "css/mui.min.css",
+      "tofinish.html"
+    ],
+    "refer": [
+      "unfinishMission.html",
+      "tofinish.html"
+    ]
+  },
+  "finishMission_main.html": {
+    "resources": [
+      "finishMission.html",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "finishMission.html"
+    ]
+  },
+  "location.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/common.js",
+      "css/common.css",
+      "js/immersed.js"
+    ],
+    "refer": []
+  },
+  "single_finish.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "single_unfinish.html": {
+    "resources": [
+      "css/mui.min.css",
+      "single_unfinish.html"
+    ],
+    "refer": [
+      "single_unfinish.html",
+      "tofinish.html"
+    ]
+  },
+  "scan.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/app.js"
+    ],
+    "refer": []
+  },
+  "barcode_scan2.html": {
+    "resources": [
+      "js/common.js",
+      "css/common.css"
+    ],
+    "refer": []
+  },
+  "scan2.html": {
+    "resources": [
+      "css/common.css"
+    ],
+    "refer": []
+  },
+  "index_main.html": {
+    "resources": [
+      "index.html",
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "dispacher_recode_main.html": {
+    "resources": [
+      "css/mui.min.css",
+      "dispacher_recode.html"
+    ],
+    "refer": [
+      "dispacher_recode.html"
+    ]
+  },
+  "dispacher_recode.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "single_finish.html",
+      "single_finish_recode.html"
+    ]
+  },
+  "single_finish_recode.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "change_pwd.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "car.html": {
+    "resources": [
+      "css/mui.min.css",
+      "car.html"
+    ],
+    "refer": [
+      "car.html",
+      "tofinish.html",
+      "change_car.html"
+    ]
+  },
+  "change_car.html": {
+    "resources": [
+      "css/mui.min.css",
+      "change_car.html"
+    ],
+    "refer": [
+      "change_car.html"
+    ]
+  }
 }

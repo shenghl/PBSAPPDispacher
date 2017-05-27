@@ -28,24 +28,26 @@
 					success:function(data){
 						var list = data.rows;
 						for(var i=0;i<list.length;i++){
-							
 							var carType = list[0].carType;
 							var plateNumber = list[0].plateNumber;
 							var area = list[0].area;
 							
 							if(carType == null || carType == ""){
 								$("#carType").val("暂无");
+							}else{
+								$("#carType").val(carType);
 							}
 							
-							if(area == null){
+							if(area == null || area ==""){
 								$("#area").val("暂无");
-								
+							}else{
+								$("#area").val(area);
 							}
 							
 							//信息写入
 							$("#plateNumber").val(plateNumber);
 						}
-							$("#operator").val(operator);
+							$("#operator").val(localStorage.getItem("account"));
 						
 					},
 					error:function(){
@@ -54,18 +56,21 @@
 				})
 				
 				
-				
-				
+				//判断文本框不为空
+				var plateNumber = document.getElementById("plateNumber");
+				var carType = document.getElementById("carType");
+				var area = document.getElementById("area");
+				var operator = document.getElementById("operator");
 				
 				
 				
 				//提交按钮单击事件
 				document.getElementById("btnToChange").addEventListener('tap',function(){
-//					mui.openWindow({
-//						url:"tofinish.html",
-//						id:"tofinish",
-//					})
-					mui.alert("==点击修改车辆==")
+					mui.openWindow({
+						url:"change_car.html",
+						id:"change_car",
+						
+					})
 				});
 			});
 			

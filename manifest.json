@@ -182,8 +182,8 @@
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
 					"hdpi": "C:/Users/Administrator/Desktop/网络图片/杭州自行车.png", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "C:/Users/Administrator/Desktop/网络图片/杭州自行车.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "C:/Users/Administrator/Desktop/网络图片/杭州自行车.png"
+					"xhdpi": "C:/Users/Administrator/Desktop/网络图片/man.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "C:/Users/Administrator/Desktop/网络图片/man.png"
 				}
 			}
 		}
@@ -515,8 +515,17 @@
 					"car.html"
 				],
 				"refer": [
-					"tofinish.html"
+					"tofinish.html",
+					"change_car.html"
 				],
+				"priority": 0
+			},
+			"change_car.html": {
+				"resources": [
+					"css/mui.min.css",
+					"change_car.html"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
